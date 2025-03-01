@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+        .container {
+            display: flex;
+            height: 100%;
+            width: 100%;
+            position: relative;
+        }
+        .background-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+        .category {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1;
+            color: white;
+            text-shadow: 2px 2px 4px #000000;
+        }
+        .category img {
+            max-width: 100px;
+            height: 100px;
+            position: left;
+            z-index: -1;
+            opacity: 0.5;
+        }
+        .toggle-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <video class="background-video" autoplay loop muted>
+            <source src="Images/food.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="category">
+            <h1>Veg</h1>
+            <img src="Images/veg-logo-png.jpg" alt="Veg">
+            <label>
+                <input type="checkbox" id="vegCheckbox" onclick="toggleCategory('Veg')"> Veg
+            </label>
+            <label>
+                <input type="checkbox" id="nonVegCheckbox" onclick="toggleCategory('Non Veg')"> Non Veg
+            </label>
+        </div>
+    </div>
+    <script>
+        function toggleCategory(category) {
+            const categoryImg = document.querySelector('.category img');
+            const categoryTitle = document.querySelector('.category h1');
+            const vegCheckbox = document.getElementById('vegCheckbox');
+            const nonVegCheckbox = document.getElementById('nonVegCheckbox');
+
+            if (category === 'Veg' && vegCheckbox.checked) {
+                categoryTitle.innerText = 'Veg';
+                categoryImg.src = 'Images/veg-logo-png.jpg';
+                nonVegCheckbox.checked = false;
+            } else if (category === 'Non Veg' && nonVegCheckbox.checked) {
+                categoryTitle.innerText = 'Non Veg';
+                categoryImg.src = 'Images/Non-Veg-PNG-Isolated-HD.png';
+                vegCheckbox.checked = false;
+            } else {
+                categoryTitle.innerText = '';
+                categoryImg.src = '';
+            }
+        }
+    </script>
+</body>
+</html>
