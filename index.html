@@ -68,6 +68,12 @@
             <label>
                 <input type="checkbox" id="nonVegCheckbox" onclick="toggleCategory('Non Veg')"> Non Veg
             </label>
+            <label>
+                <input type="checkbox" id="Both" onclick="toggleCategory('Both')"> Both
+            </label>
+            <label>
+                <button class="toggle-button" onclick="submitForm()">Submit</button>
+            </label>
         </div>
     </div>
     <script>
@@ -76,26 +82,48 @@
             const categoryTitle = document.querySelector('.category h1');
             const vegCheckbox = document.getElementById('vegCheckbox');
             const nonVegCheckbox = document.getElementById('nonVegCheckbox');
-            
-
+            const bothCheckbox = document.getElementById('Both');
+        
             if (category === 'Veg' && vegCheckbox.checked) {
                 categoryTitle.innerText = 'Veg';
                 categoryImg.src = 'Images/veg-logo-png.jpg';
                 nonVegCheckbox.checked = false;
+                bothCheckbox.checked = false;
             } else if (category === 'Non Veg' && nonVegCheckbox.checked) {
                 categoryTitle.innerText = 'Non Veg';
                 categoryImg.src = 'Images/Non-Veg-PNG-Isolated-HD.png';
                 vegCheckbox.checked = false;
-            } else if (category === 'Both' && BothCheckbox.checked) {
-                categoryTitle.innerText = 'Non Veg';
-                categoryImg.src = 'Images/Non-Veg-PNG-Isolated-HD.png';
+                bothCheckbox.checked = false;
+            } else if (category === 'Both' && bothCheckbox.checked) {
+                categoryTitle.innerText = 'Both';
+                categoryImg.src = 'Images/veg-non-veg-symbol-isolated-vector-49739023.jpg';
                 vegCheckbox.checked = false;
+                nonVegCheckbox.checked = false;
             } else {
                 categoryTitle.innerText = '';
                 categoryImg.src = '';
             }
         }
-    </script>
+    
+        function submitForm() {
+            const vegChecked = document.getElementById('vegCheckbox').checked;
+            const nonVegChecked = document.getElementById('nonVegCheckbox').checked;
+            const bothChecked = document.getElementById('Both').checked;
+            
+            let selectedCategory = '';
+            
+            if (vegChecked) {
+                selectedCategory = 'Veg';
+            } else if (nonVegChecked) {
+                selectedCategory = 'Non Veg';
+            } else if (bothChecked) {
+                selectedCategory = 'Both';
+            }
+            
+            alert('Selected Category: ' + selectedCategory);
+            // You can replace the above alert with the actual form submission logic
+        }
+    </script>    
 </body>
 </html>
 
