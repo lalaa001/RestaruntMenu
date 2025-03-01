@@ -76,12 +76,17 @@
             const categoryTitle = document.querySelector('.category h1');
             const vegCheckbox = document.getElementById('vegCheckbox');
             const nonVegCheckbox = document.getElementById('nonVegCheckbox');
+            
 
             if (category === 'Veg' && vegCheckbox.checked) {
                 categoryTitle.innerText = 'Veg';
                 categoryImg.src = 'Images/veg-logo-png.jpg';
                 nonVegCheckbox.checked = false;
             } else if (category === 'Non Veg' && nonVegCheckbox.checked) {
+                categoryTitle.innerText = 'Non Veg';
+                categoryImg.src = 'Images/Non-Veg-PNG-Isolated-HD.png';
+                vegCheckbox.checked = false;
+            } else if (category === 'Both' && BothCheckbox.checked) {
                 categoryTitle.innerText = 'Non Veg';
                 categoryImg.src = 'Images/Non-Veg-PNG-Isolated-HD.png';
                 vegCheckbox.checked = false;
@@ -93,3 +98,5 @@
     </script>
 </body>
 </html>
+
+
