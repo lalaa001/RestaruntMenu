@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+        }
+        .header {
+            background-color: #333;
+            color: white;
+            padding: 15px 20px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .cart {
+            background-color: #ffcc00;
+            color: black;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .menu-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            width: 100%;
+            max-width: 1200px;
+            margin: auto;
+        }
+        .card {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            position: relative;
+            transition: transform 0.2s;
+            text-align: center;
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        .card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+        .card .info {
+            padding: 15px;
+        }
+        .view-button {
+            display: none;
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .card:hover .view-button {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <span>Menu</span>
+        <button class="cart">Cart</button>
+    </div>
+        <div class="menu-section">
+            <div class="card">
+                <img src="path/to/image1.jpg" alt="Veg Alfredo Pasta">
+                <div class="info">
+                    <h2>Veg Alfredo Pasta</h2>
+                    <p>A creamy, cheesy pasta dish tossed in a rich Alfredo sauce with sautéed vegetables.</p>
+                </div>
+                <a href="itemdetails.html" class="view-button" target="_blank">View</a>
+                <button class="add-to-cart-button" onclick="addToCart('Veg Alfredo Pasta')">Add to Cart</button>
+            </div>
+
+            <div class="card">
+                <img src="path/to/image2.jpg" alt="Veg Lasagna">
+                <div class="info">
+                    <h2>Veg Lasagna</h2>
+                    <p>Layered lasagna with a cheesy spinach filling and a rich tomato sauce.</p>
+                </div>
+                <a href="itemdetails.html" class="view-button" target="_blank">View</a>
+            </div>
+
+            <div class="card">
+                <img src="path/to/image3.jpg" alt="Mushroom Risotto">
+                <div class="info">
+                    <h2>Mushroom Risotto</h2>
+                    <p>A creamy Italian rice dish cooked slowly with mushrooms and a rich, cheesy broth.</p>
+                </div>
+                <a href="itemdetails.html" class="view-button" target="_blank">View</a>
+            </div>
+
+            <div class="card">
+                <img src="path/to/image4.jpg" alt="Grilled Veggie Wrap">
+                <div class="info">
+                    <h2>Grilled Veggie Wrap</h2>
+                    <p>A healthy, Mediterranean-inspired wrap filled with grilled vegetables and hummus.</p>
+                </div>
+                <a href="itemdetails.html" class="view-button" target="_blank">View</a>
+            </div>
+
+            <div class="card">
+                <img src="path/to/image5.jpg" alt="Spinach & Ricotta Stuffed Peppers">
+                <div class="info">
+                    <h2>Spinach & Ricotta Stuffed Peppers</h2>
+                    <p>Roasted bell peppers stuffed with a creamy spinach and ricotta mixture.</p>
+                </div>
+                <a href="itemdetails.html" class="view-button" target="_blank">View</a>
+            </div>
+
+            <div class="card">
+                <img src="path/to/image6.jpg" alt="Stir-Fried Tofu & Vegetables">
+                <div class="info">
+                    <h2>Stir-Fried Tofu & Vegetables</h2>
+                    <p>A quick, protein-rich dish with crispy tofu and crunchy vegetables.</p>
+                </div>
+                <a href="itemdetails.html" class="view-button" target="_blank">View</a>
+            </div>
+
+            <div class="card">
+                <img src="path/to/image7.jpg" alt="Veggie Burger">
+                <div class="info">
+                    <h2>Veggie Burger</h2>
+                    <p>A delicious homemade burger with a crispy chickpea patty, fresh veggies, and a tangy sauce.</p>
+                </div>
+                <a href="itemdetails.html" class="view-button" target="_blank">View</a>
+            </div>
+
+            <div class="card">
+                <img src="path/to/image8.jpg" alt="Pesto Pasta">
+                <div class="info">
+                    <h2>Pesto Pasta</h2>
+                    <p>A fresh and aromatic pasta tossed in a homemade basil pesto sauce.</p>
+                </div>
+                <a href="itemdetails.html" class="view-button" target="_blank">View</a>
+            </div>
+        </div>
+        <script>
+            const cartItems = [];
+    
+            function addToCart(itemName) {
+                cartItems.push(itemName);
+                updateCart();
+                // Save cart items to localStorage
+                localStorage.setItem('cartItems', JSON.stringify(cartItems));
+            }
+    
+            function updateCart() {
+                const cartItemsList = document.getElementById('cartItems');
+                cartItemsList.innerHTML = '';
+                cartItems.forEach(item => {
+                    const li = document.createElement('li');
+                    li.classList.add('cart-item');
+                    li.textContent = item;
+                    cartItemsList.appendChild(li);
+                });
+            }
+    
+            // Load cart items from localStorage when the page loads
+            window.onload = function() {
+                const savedCartItems = localStorage.getItem('cartItems');
+                if (savedCartItems) {
+                    cartItems.push(...JSON.parse(savedCartItems));
+                    updateCart();
+                }
+            }
+        </script>    
+</body>
+</html>

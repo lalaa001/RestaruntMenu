@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customize Dish</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-6">
+
+    <div class="max-w-md mx-auto bg-white p-6 rounded-lg shadow-md">
+        <h2 class="text-2xl font-bold mb-4">Customize Your Dish</h2>
+
+        <p class="text-gray-700">Base Price: ₹<span id="basePrice">1250</span></p>
+
+        <!-- Add an Ingredient Section -->
+        <label for="itemSelect" class="block text-sm font-medium text-gray-700 mt-4">Choose an ingredient:</label>
+        <select id="itemSelect" class="block w-full mt-1 p-2 border rounded"></select>
+
+        <button onclick="addItem()" class="mt-3 w-full bg-green-500 text-white py-2 rounded hover:bg-green-700">
+            Add Item (+₹10)
+        </button>
+
+        <label for="newItem" class="block text-sm font-medium text-gray-700 mt-4">Add Another Ingredient:</label>
+        <input type="text" id="newItem" class="block w-full mt-1 p-2 border rounded" placeholder="Enter ingredient name">
+
+        <button onclick="addCustomItem()" class="mt-3 w-full bg-yellow-500 text-white py-2 rounded hover:bg-yellow-700">
+            Add Custom Ingredient (+₹10)
+        </button>
+
+        <!-- Remove an Ingredient Section -->
+        <label for="removeSelect" class="block text-sm font-medium text-gray-700 mt-4">Remove an ingredient:</label>
+        <select id="removeSelect" class="block w-full mt-1 p-2 border rounded"></select>
+
+        <button onclick="removeSelectedIngredient()" class="mt-3 w-full bg-red-500 text-white py-2 rounded hover:bg-red-700">
+            Remove Ingredient (-₹5)
+        </button>
+
+        <ul id="dishItems" class="mt-4 space-y-2"></ul>
+
+        <p class="mt-4 font-semibold">Total Price: ₹<span id="totalPrice">1250</span></p>
+
+        <button onclick="proceedToPayment()" class="mt-4 w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-700">
+            Proceed to Payment
+        </button>
+    </div>
+
+    <script>
+        let menuData = {
+            "Veg Lasagna": {
+        "Price": "200",
+        "ingredients": [
+            "Lasagna sheets (6)",
+            "Ricotta cheese (½ cup)",
+            "Mozzarella (½ cup)",
+            "Tomato sauce (1 cup)",
+            "Spinach (1 cup)",
+            "Zucchini (1, sliced)",
+            "Olive oil (1 tbsp)",
+            "Oregano (½ tsp)",
+            "Salt"
+        ],
+        "nutrition": {
+            "Calories": "380",
+            "Carbs": "45g",
+            "Protein": "15g",
+            "Fat": "14g"
+        }
+    },
+    "Mushroom Risotto": {
+        "Price": "250",
+        "ingredients": [
+            "Arborio rice (1 cup)",
+            "Mushrooms (1 cup, sliced)",
+            "Vegetable broth (3 cups)",
+            "Onion (1, chopped)",
+            "Garlic (2 cloves, minced)",
+            "Parmesan (¼ cup)",
+            "Butter (1 tbsp)",
+            "Black pepper (½ tsp)",
+            "Salt"
+        ],
+        "nutrition": {
+            "Calories": "320",
+            "Carbs": "50g",
+            "Protein": "10g",
+            "Fat": "8g"
+        }
+    },
+    "Cheesy Garlic Bread with Veggies": {
+        "Price": "300",
+        "ingredients": [
+            "Baguette (½)",
+            "Butter (2 tbsp)",
+            "Garlic (2 cloves, minced)",
+            "Mozzarella (½ cup)",
+            "Bell peppers (½ cup, sliced)",
+            "Oregano (½ tsp)",
+            "Salt"
+        ],
+        "nutrition": {
+            "Calories": "320",
+            "Carbs": "40g",
+            "Protein": "10g",
+            "Fat": "14g"
+        }
+    },
+    "Vegetable Khichdi": {
+        "Price": "350",
+        "ingredients": [
+            "Rice (1 cup)",
+            "Moong dal (½ cup)",
+            "Mixed vegetables (1 cup)",
+            "Cumin (½ tsp)",
+            "Turmeric (½ tsp)",
+            "Salt",
+            "Ghee"
+        ],
+        "nutrition": {
+            "Calories": "300",
+            "Carbs": "50g",
+            "Protein": "12g",
+            "Fat": "6g"
+        }
+    },
+    "Paneer Butter Masala": {
+        "Price": "400",
+        "ingredients": [
+            "Paneer (200g)",
+            "Tomato puree (1 cup)",
+            "Onion (1, chopped)",
+            "Ginger-garlic paste (1 tsp)",
+            "Garam masala (½ tsp)",
+            "Butter (2 tbsp)",
+            "Cream (2 tbsp)",
+            "Salt"
+        ],
+        "nutrition": {
+            "Calories": "350",
+            "Carbs": "15g",
+            "Protein": "18g",
+            "Fat": "25g"
+        }
+    },
+    "Chana Masala": {
+        "Price": "450",
+        "ingredients": [
+            "Chickpeas (1 cup, boiled)",
+            "Onion (1, chopped)",
+            "Tomato (1, chopped)",
+            "Ginger-garlic paste (1 tsp)",
+            "Chana masala powder (1 tsp)",
+            "Cumin (½ tsp)",
+            "Salt"
+        ],
+        "nutrition": {
+            "Calories": "280",
+            "Carbs": "40g",
+            "Protein": "12g",
+            "Fat": "7g"
+        }
+    },
+    "Grilled Veggie Wrap": {
+        "Price": "500",
+        "ingredients": [
+            "Whole wheat tortilla (1)",
+            "Bell peppers (½ cup, sliced)",
+            "Zucchini (½ cup, sliced)",
+            "Feta cheese (¼ cup)",
+            "Hummus (2 tbsp)",
+            "Olive oil (1 tbsp)",
+            "Salt",
+            "Black pepper"
+        ],
+        "nutrition": {
+            "Calories": "280",
+            "Carbs": "35g",
+            "Protein": "8g",
+            "Fat": "10g"
+        }
+    },
+    "Spinach & Ricotta Stuffed Peppers": {
+        "Price": "550",
+        "ingredients": [
+            "Bell peppers (2, halved)",
+            "Ricotta cheese (½ cup)",
+            "Spinach (1 cup)",
+            "Breadcrumbs (¼ cup)",
+            "Garlic (2 cloves, minced)",
+            "Olive oil (1 tbsp)",
+            "Black pepper (½ tsp)",
+            "Salt"
+        ],
+        "nutrition": {
+            "Calories": "260",
+            "Carbs ": "20g",
+            "Protein": "10g",
+            "Fat": "12g"
+        }
+    },
+    "Stir-Fried Tofu & Vegetables": {
+        "Price": "600",
+        "ingredients": [
+            "Firm tofu (200g, cubed)",
+            "Bell peppers (1 cup, sliced)",
+            "Broccoli (½ cup)",
+            "Soy sauce (2 tbsp)",
+            "Sesame oil (1 tbsp)",
+            "Garlic (2 cloves, minced)",
+            "Black pepper (½ tsp)",
+            "Salt"
+        ],
+        "nutrition": {
+            "Calories": "280",
+            "Carbs": "20g",
+            "Protein": "18g",
+            "Fat": "12g"
+        }
+    },
+    "Veggie Burger": {
+        "Price": "650",
+        "ingredients": [
+            "Burger bun (1)",
+            "Chickpeas (½ cup, mashed)",
+            "Onion (½, chopped)",
+            "Garlic (1 clove, minced)",
+            "Breadcrumbs (¼ cup)",
+            "Paprika (½ tsp)",
+            "Olive oil (1 tbsp)",
+            "Salt"
+        ],
+        "nutrition": {
+            "Calories": "350",
+            "Carbs": "45g",
+            "Protein": "12g",
+            "Fat": "10g"
+        }
+    },
+    "Pesto Pasta": {
+        "Price": "700",
+        "ingredients": [
+            "Pasta (200g)",
+            "Basil leaves (1 cup)",
+            "Olive oil (2 tbsp)",
+            "Garlic (2 cloves)",
+            "Parmesan (¼ cup)",
+            "Pine nuts (2 tbsp)",
+            "Salt"
+        ],
+        "nutrition": {
+            "Calories": "400",
+            "Carbs": "50g",
+            "Protein": "10g",
+            "Fat": "18g"
+        }
+    },
+    "Mediterranean Couscous Salad": {
+        "Price": "750",
+        "ingredients": [
+            "Couscous (1 cup)",
+            "Cherry tomatoes (½ cup)",
+            "Cucumber (½ cup, chopped)",
+            "Feta cheese (¼ cup)",
+            "Olive oil (1 tbsp)",
+            "Lemon juice (1 tbsp)",
+            "Salt"
+        ],
+        "nutrition": {
+            "Calories": "260",
+            "Carbs": "35g",
+            "Protein": "8g",
+            "Fat": "10g"
+        }
+    },
+    "Creamy Broccoli Soup": {
+        "Price": "800",
+        "ingredients": [
+            "Broccoli (2 cups)",
+            "Vegetable broth (2 cups)",
+            "Onion (1, chopped)",
+            "Garlic (2 cloves, minced)",
+            "Cream (¼ cup)",
+            "Black pepper (½ tsp)",
+            "Salt"
+        ],
+        "nutrition": {
+            "Calories": "220",
+            "Carbs": "25g",
+            "Protein": "6g",
+            "Fat": "10g"
+        }
+    },
+    "Aloo Matar": {
+        "Price": "850",
+        "ingredients": [
+            "Potatoes (2, diced)",
+            "Green peas (1 cup)",
+            "Onion (1, chopped)",
+            "Tomato (1, chopped)",
+            "Cumin (½ tsp)",
+            "Turmeric (½ tsp)",
+            "Garam masala (½ tsp)",
+            "Salt"
+        ],
+        "nutrition": {
+            "Calories": "250",
+            "Carbs": "45g",
+            "Protein": "6g",
+            "Fat": "5g"
+        }
+    },
+    "Dal Tadka": {
+        "Price": "900",
+        "ingredients": [
+            "Toor dal (¾ cup)",
+            "Onion (1, chopped)",
+            "Tomato (1, chopped)",
+            "Garlic (4 cloves)",
+            "Cumin (½ tsp)",
+            "Turmeric (½ tsp)",
+            "Ghee (1 tbsp)",
+            "Salt"
+        ],
+        "nutrition": {
+            "Calories": "270",
+            "Carbs": "40g",
+            "Protein": "15g",
+            "Fat": "6g"
+        }
+    },
+    "Methi Thepla": {
+        "Price": "950",
+        "ingredients": [
+            "Whole wheat flour (1 cup)",
+            "Fresh fenugreek leaves (½ cup)",
+            "Turmeric (½ tsp)",
+            "Cumin (½ tsp)",
+            "Salt",
+            "Yogurt (2 tbsp)",
+            "Oil"
+        ],
+        "nutrition": {
+            "Calories": "240",
+            "Carbs": "40g",
+            "Protein": "8g",
+            "Fat": "6g"
+        }
+    },
+    "Baingan Bharta": {
+        "Price": "1000",
+        "ingredients": [
+            "Eggplant (1, roasted and mashed)",
+            "Onion (1, chopped)",
+            "Tomato (1, chopped)",
+            "Garlic (4 cloves)",
+            "Cumin (½ tsp)",
+ "Garam masala (½ tsp)",
+            "Oil",
+            "Salt"
+        ],
+        "nutrition": {
+            "Calories": "180",
+            "Carbs": "20g",
+            "Protein": "5g",
+            "Fat": "8g"
+        }
+    },
+    "Rajma Masala": {
+        "Price": "1050",
+        "ingredients": [
+            "Kidney beans (1 cup, boiled)",
+            "Onion (1, chopped)",
+            "Tomato (1, chopped)",
+            "Ginger-garlic paste (1 tsp)",
+            "Cumin (½ tsp)",
+            "Garam masala (½ tsp)",
+            "Salt"
+        ],
+        "nutrition": {
+            "Calories": "290",
+            "Carbs": "45g",
+            "Protein": "12g",
+            "Fat": "5g"
+        }
+    },
+    "Capsicum Besan Sabzi": {
+        "Price": "1100",
+        "ingredients": [
+            "Capsicum (2, diced)",
+            "Gram flour (¼ cup)",
+            "Cumin (½ tsp)",
+            "Turmeric (½ tsp)",
+            "Red chili powder (½ tsp)",
+            "Salt",
+            "Oil"
+        ],
+        "nutrition": {
+            "Calories": "220",
+            "Carbs": "30g",
+            "Protein": "6g",
+            "Fat": "9g"
+        }
+    },
+    "Vegetable Pulao": {
+        "Price": "1150",
+        "ingredients": [
+            "Basmati rice (1 cup)",
+            "Mixed vegetables (1 cup)",
+            "Cumin (½ tsp)",
+            "Bay leaf (1)",
+            "Garam masala (½ tsp)",
+            "Salt",
+            "Oil"
+        ],
+        "nutrition": {
+            "Calories": "280",
+            "Carbs": "50g",
+            "Protein": "6g",
+            "Fat": "5g"
+        }
+    },
+    "Kadhi Pakora": {
+        "Price": "1200",
+        "ingredients": [
+            "Besan (½ cup)",
+            "Yogurt (1 cup)",
+            "Turmeric (½ tsp)",
+            "Red chili powder (½ tsp)",
+            "Mustard seeds (½ tsp)",
+            "Curry leaves (6-8)",
+            "Salt",
+            "Oil"
+        ],
+        "nutrition": {
+            "Calories": "260",
+            "Carbs": "30g",
+            "Protein": "10g",
+            "Fat": "9g"
+        }
+    },
+    "Mushroom Masala": {
+        "Price": "1250",
+        "ingredients": [
+            "Mushrooms (200g, sliced)",
+            "Onion (1, chopped)",
+            "Tomato (1, chopped)",
+            "Garlic (4 cloves)",
+            "Cumin (½ tsp)",
+            "Garam masala (½ tsp)",
+            "Salt",
+            "Oil"
+        ],
+        "nutrition": {
+            "Calories": "200",
+            "Carbs": "15g",
+            "Protein": "7g",
+            "Fat": "10g"
+        }
+    },
+        };
+
+        let basePrice = menuData["Mushroom Masala"].Price;
+        let totalPrice = basePrice;
+        let dishItems = [];
+
+        // Populate dropdowns with ingredients
+        const populateItems = () => {
+            const addSelect = document.getElementById("itemSelect");
+            const removeSelect = document.getElementById("removeSelect");
+
+            addSelect.innerHTML = "";
+            removeSelect.innerHTML = "";
+
+            menuData["Mushroom Masala"].ingredients.forEach(ingredient => {
+                let addOption = document.createElement("option");
+                addOption.value = ingredient;
+                addOption.innerText = ingredient;
+                addSelect.appendChild(addOption);
+
+                let removeOption = document.createElement("option");
+                removeOption.value = ingredient;
+                removeOption.innerText = ingredient;
+                removeSelect.appendChild(removeOption);
+            });
+        };
+
+        // Update total price
+        const updateTotalPrice = () => {
+            let addedCost = dishItems.reduce((sum, item) => sum + item.price, 0);
+            totalPrice = basePrice + addedCost;
+            document.getElementById("totalPrice").innerText = totalPrice;
+        };
+
+        // Add selected item
+        const addItem = () => {
+            const select = document.getElementById("itemSelect");
+            const itemName = select.value;
+
+            if (dishItems.some(item => item.name === itemName)) {
+                alert("Item already added!");
+                return;
+            }
+
+            dishItems.push({ name: itemName, price: 10 });
+            updateList();
+            updateTotalPrice();
+        };
+
+        // Add a custom ingredient
+        const addCustomItem = () => {
+            const input = document.getElementById("newItem");
+            const itemName = input.value.trim();
+
+            if (itemName === "") {
+                alert("Enter a valid ingredient!");
+                return;
+            }
+
+            if (dishItems.some(item => item.name === itemName)) {
+                alert("Item already added!");
+                return;
+            }
+
+            dishItems.push({ name: itemName, price: 10 });
+            updateList();
+            updateTotalPrice();
+            input.value = "";
+        };
+
+        // Remove an item from dish
+        const removeItem = (index) => {
+            dishItems.splice(index, 1);
+            updateList();
+            updateTotalPrice();
+        };
+
+        // Remove a predefined ingredient from JSON (-₹5)
+        const removeSelectedIngredient = () => {
+            const select = document.getElementById("removeSelect");
+            const itemName = select.value;
+
+            const ingredientIndex = menuData["Mushroom Masala"].ingredients.indexOf(itemName);
+            if (ingredientIndex !== -1) {
+                menuData["Mushroom Masala"].ingredients.splice(ingredientIndex, 1);
+                basePrice -= 5; // Reduce base price
+                updateTotalPrice();
+                populateItems(); // Refresh dropdown options
+            }
+        };
+
+        // Update the list of selected items
+        const updateList = () => {
+            const list = document.getElementById("dishItems");
+            list.innerHTML = "";
+
+            dishItems.forEach((item, index) => {
+                list.innerHTML += `
+                    <li class="flex justify-between items-center bg-gray-200 p-2 rounded">
+                        <span>${item.name} - ₹${item.price}</span>
+                        <button onclick="removeItem(${index})" class="bg-red-500 text-white px-2 py-1 rounded">Remove</button>
+                    </li>
+                `;
+            });
+        };
+
+        // Proceed to payment
+        const proceedToPayment = () => {
+        alert(`Proceeding to payment. Total: ₹${totalPrice}`);
+        };
+
+        // Initialize on page load
+        window.onload = () => {
+            populateItems();
+            document.getElementById("basePrice").innerText = basePrice;
+        };
+    </script>
+</body>
+</html>

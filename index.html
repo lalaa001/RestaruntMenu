@@ -3,134 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Page</title>
+    <title>Verify OTP</title>
     <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            overflow: hidden;
-        }
-        .container {
+        body {
+            font-family: Arial, sans-serif;
             display: flex;
-            height: 100%;
-            width: 100%;
-            position: relative;
-        }
-        .background-video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: -1;
-        }
-        .category {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
-            z-index: 1;
-            color: white;
-            text-shadow: 2px 2px 4px #000000;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+            background-image: url('../images/photo.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
         }
-
-        .category label {
-            font-size: 24px; /* Increase font size here */
-            margin-top: 10px;
-        }
-
-        .category img {
-            max-width: 100px;
-            height: 100px;
-            position: left;
-            z-index: -1;
-            opacity: 0.5;
-        }
-        .toggle-button {
-            margin-top: 20px;
-            padding: 10px 20px;
+        
+        .container {
             background-color: white;
-            border: none;
-            cursor: pointer;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+
+        input[type="password"], input[type="number"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
             font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        input[type="text"], input[type="text"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        input[type="number"]::-webkit-outer-spin-button,
+        input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        button {
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            background-color: Green;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin: 5px;
+        }
+
+        button:hover {
+            background-color: lightgreen;
+        }
+
+        .back-button {
+            background-color: Red;
+            color: #ffffff;
+        }
+
+        .back-button1 {
+            background-color: blue;
+            color: #ffffff;
+        }
+
+        .back-button:hover {
+            background-color: lightgreen;
+            color: #ffffff;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <video class="background-video" autoplay loop muted>
-            <source src="Images/food.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-        <div class="category">
-            <h1>Veg</h1>
-            <img src="Images/veg-logo-png.jpg" alt="Veg">
-            <label>
-                <input type="checkbox" id="vegCheckbox" onclick="toggleCategory('Veg')"> Veg
-            </label>
-            <label>
-                <input type="checkbox" id="nonVegCheckbox" onclick="toggleCategory('Non Veg')"> Non Veg
-            </label>
-            <label>
-                <input type="checkbox" id="veganCheckbox" onclick="toggleCategory('Vegan')"> Vegan
-            </label>
-            <label>
-                <button class="toggle-button" onclick="submitForm()">Submit</button>
-            </label>
-        </div>
+        <input type="text" id="Name" placeholder="Enter your Name">
+        <input type="number" id="mobileNumberInput" placeholder="Enter your Mobile number">
+        <input type="password" id="OTPInput" placeholder="Enter OTP 1234" required>
+        <button onclick="verifyOTP()">Submit</button>
+        <button class="back-button1" onclick="resendOTP()">Resend OTP</button>
+        <p id="message"></p>
     </div>
+
     <script>
-        function toggleCategory(category) {
-            const categoryImg = document.querySelector('.category img');
-            const categoryTitle = document.querySelector('.category h1');
-            const vegCheckbox = document.getElementById('vegCheckbox');
-            const nonVegCheckbox = document.getElementById('nonVegCheckbox');
-            const bothCheckbox = document.getElementById('veganCheckbox');
-        
-            if (category === 'Veg' && vegCheckbox.checked) {
-                categoryTitle.innerText = 'Veg';
-                categoryImg.src = 'Images/veg-logo-png.jpg';
-                nonVegCheckbox.checked = false;
-                bothCheckbox.checked = false;
-            } else if (category === 'Non Veg' && nonVegCheckbox.checked) {
-                categoryTitle.innerText = 'Non Veg';
-                categoryImg.src = 'Images/Non-Veg-PNG-Isolated-HD.png';
-                vegCheckbox.checked = false;
-                bothCheckbox.checked = false;
-            } else if (category === 'Vegan' && bothCheckbox.checked) {
-                categoryTitle.innerText = 'Vegan';
-                categoryImg.src = 'Images/veg-non-veg-symbol-isolated-vector-49739023.jpg';
-                vegCheckbox.checked = false;
-                nonVegCheckbox.checked = false;
+        function verifyOTP() {
+            const OTP = document.getElementById('OTPInput').value;
+            const message = document.getElementById('message');
+
+            if (OTP === '1234') { 
+                localStorage.setItem('authenticated', 'true');
+                const redirectUrl = localStorage.getItem('redirectUrl') || 'category.html';
+                localStorage.removeItem('redirectUrl'); 
+                window.location.href = redirectUrl;
             } else {
-                categoryTitle.innerText = '';
-                categoryImg.src = '';
+                message.textContent = 'Invalid OTP. Please try again.';
+                message.style.color = 'red';
             }
         }
-    
-        function submitForm() {
-            const vegChecked = document.getElementById('vegCheckbox').checked;
-            const nonVegChecked = document.getElementById('nonVegCheckbox').checked;
-            const bothChecked = document.getElementById('veganCheckbox').checked;
-            
-            let selectedCategory = '';
-            
-            if (vegChecked) {
-                selectedCategory = 'Veg';
-            } else if (nonVegChecked) {
-                selectedCategory = 'Non Veg';
-            } else if (bothChecked) {
-                selectedCategory = 'Vegan';
-            }
-            
-            alert('Selected Category: ' + selectedCategory);
-            // You can replace the above alert with the actual form submission logic
+
+        function resendOTP() {
+            alert('OTP has been resent to your mobile number.');
         }
-    </script>    
+    </script>
 </body>
 </html>
-
-
