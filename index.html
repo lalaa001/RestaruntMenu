@@ -136,7 +136,7 @@
 
             if (OTP === '1234') { 
                 localStorage.setItem('authenticated', 'true');
-                const redirectUrl = localStorage.getItem('redirectUrl') || 'category.html';
+                const redirectUrl = localStorage.getItem('redirectUrl') || 'Category.html';
                 localStorage.removeItem('redirectUrl'); 
                 window.location.href = redirectUrl;
             } else {
