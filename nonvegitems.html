@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu</title>
     <style>
+        /* Your existing CSS styles */
         body, html {
             margin: 0;
             padding: 0;
@@ -181,9 +182,6 @@
             font-weight: bold;
             margin-top: 10px;
         }
-        .clear-cart:hover {
-            background: darkgray;
-        }
         .proceed-payment {
             background: green;
         }
@@ -195,11 +193,13 @@
 <body>
     <div class="header">
         <span>Menu</span>
-        <button class="cart" onclick="toggleCart()">Cart<span id="cartCounter" class="cart-counter">0</span></button>
+        <button class="cart" onclick="toggleCart()" aria-label="Open Cart">
+            Cart<span id="cartCounter" class="cart-counter">0</span>
+        </button>
     </div>
 
     <div class="menu-section">
-
+        <!-- Menu Items -->
         <div class="card">
             <img src="Images/image46.jpg" alt="Garlic Butter Chicken Thighs">
             <div class="info">
@@ -483,8 +483,9 @@
 
     </div>
 
+    <!-- Cart Section -->
     <div id="cartSection" class="cart-section">
-        <button class="close-cart" onclick="toggleCart()">X</button>
+        <button class="close-cart" onclick="toggleCart()" aria-label="Close Cart">X</button>
         <h2>Your Cart</h2>
         <ul id="cartItems" class="cart-items"></ul>
         <p id="totalPrice" class="total-price">Total Price: ₹0</p>
@@ -493,44 +494,68 @@
     </div>
 
     <script>
-        let cart = JSON.parse(localStorage.getItem('cart')) || {};
-        let totalPrice = parseFloat(localStorage.getItem('totalPrice')) || 0;
+        // Initialize cart and total price
+        let cart, totalPrice;
+        try {
+            cart = JSON.parse(localStorage.getItem('cart')) || {};
+            totalPrice = parseFloat(localStorage.getItem('totalPrice')) || 0;
+        } catch (e) {
+            cart = {};
+            totalPrice = 0;
+        }
 
-        function addToCart(itemName, price) {
+        // Function to view item details
+        function viewItem(name) {
+            window.location.href = `itemdetails.html?name=${encodeURIComponent(name)}`;
+        }
+
+        // Function to customize item
+        function customizeItem(itemName) {
+            const basePrice = getPrice(itemName);
+            window.location.href = `customize.html?name=${encodeURIComponent(itemName)}&price=${basePrice}`;
+        }
+
+        // Function to add item to cart
+        function addToCart(itemName) {
+            const price = getPrice(itemName);
             if (!cart[itemName]) {
                 cart[itemName] = 0;
             }
             cart[itemName]++;
-            totalPrice += price;  
+            totalPrice += price;
             updateCart();
             saveCart();
         }
 
-        function removeFromCart(itemName, price) {
+        // Function to remove item from cart
+        function removeFromCart(itemName) {
+            const price = getPrice(itemName);
             if (cart[itemName] > 0) {
                 cart[itemName]--;
-                totalPrice -= price; 
+                totalPrice -= price;
                 if (cart[itemName] === 0) {
-                    delete cart[itemName]; 
+                    delete cart[itemName];
                 }
             }
             updateCart();
             saveCart();
         }
 
+        // Function to clear the cart
         function clearCart() {
             cart = {};
-            totalPrice = 0;  
+            totalPrice = 0;
             updateCart();
             saveCart();
         }
 
+        // Function to update the cart UI
         function updateCart() {
             const cartItemsList = document.getElementById('cartItems');
             const cartCounter = document.getElementById('cartCounter');
             const totalPriceElement = document.getElementById('totalPrice');
 
-            cartItemsList.innerHTML = ''; 
+            cartItemsList.innerHTML = '';
             let totalItems = 0;
 
             for (let item in cart) {
@@ -539,8 +564,8 @@
                 li.classList.add('cart-item');
                 li.innerHTML = `
                     ${item} x${cart[item]}
-                    <button onclick="addToCart('${item}', getPrice('${item}'))">+</button>
-                    <button onclick="removeFromCart('${item}', getPrice('${item}'))">-</button>
+                    <button onclick="addToCart('${item}')">+</button>
+                    <button onclick="removeFromCart('${item}')">-</button>
                 `;
                 cartItemsList.appendChild(li);
             }
@@ -551,12 +576,9 @@
             totalPriceElement.textContent = `Total Price: ₹${totalPrice.toFixed(2)}`;
         }
 
+        // Function to get the price of an item
         function getPrice(itemName) {
             const prices = {
-                'Mediterranean Grilled Chicken Salad': 950,
-                'Creamy Chicken and Mushroom Pasta': 1000,
-                'Chicken and Cheese Omelette with Toast': 1050,
-                'Cheesy Chicken Mac and Cheese': 1100,
                 'Garlic Butter Chicken Thighs': 200,
                 'Spicy Chicken Drumsticks': 250,
                 'Pan-Seared Chicken Breast with Veggies': 300,
@@ -572,38 +594,33 @@
                 'Creamy Garlic Butter Shrimp': 800,
                 'Spicy Grilled Prawns': 850,
                 'Chicken Fajitas': 900,
+                'Mediterranean Grilled Chicken Salad': 950,
+                'Creamy Chicken and Mushroom Pasta': 1000,
+                'Chicken and Cheese Omelette with Toast': 1050,
+                'Cheesy Chicken Mac and Cheese': 1100,
                 'Spicy Chicken Skewers': 1150,
             };
             return prices[itemName] || 0;
         }
 
-        function viewItem(name) {
-    window.location.href = `itemdetails.html?name=${encodeURIComponent(name)}`;
-}
-
+        // Function to save cart to localStorage
         function saveCart() {
             localStorage.setItem('cart', JSON.stringify(cart));
-            localStorage.setItem('totalPrice', totalPrice.toFixed(2)); 
+            localStorage.setItem('totalPrice', totalPrice.toFixed(2));
         }
 
+        // Function to toggle the cart visibility
         function toggleCart() {
             const cartSection = document.getElementById('cartSection');
             cartSection.classList.toggle('open');
         }
 
-        function closeCart() {
-            document.getElementById('cartSection').classList.remove('open'); 
-        }
-
+        // Function to proceed to payment
         function proceedToPayment() {
-            window.location.href = "payment.html"; 
+            window.location.href = "payment.html";
         }
 
-        function customizeItem(itemName) {
-            const basePrice = getPrice(itemName);
-            window.location.href = `customize.html?name=${encodeURIComponent(itemName)}&price=${basePrice}`;
-        }
-
+        // Initialize cart on page load
         window.onload = updateCart;
     </script>
 </body>

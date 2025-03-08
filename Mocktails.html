@@ -135,12 +135,36 @@
             right: 15px;
             border-radius: 50%;
         }
-        .total-price {
-            font-weight: bold;
-            margin-top: 10px;
+        .cart-section h2 {
+            margin-bottom: 10px;
         }
-        .proceed-payment {
-            background: green;
+        .cart-items {
+            list-style: none;
+            padding: 0;
+        }
+        .cart-item {
+            background: #ffcc00;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .cart-buttons button {
+            background: red;
+            color: white;
+            border : none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 3px;
+            margin-left: 5px;
+        }
+        .cart-buttons button:hover {
+            background: darkred;
+        }
+        .clear-cart, .proceed-payment {
+            background: black;
             color: white;
             padding: 10px;
             width: 90%;
@@ -149,6 +173,16 @@
             cursor: pointer;
             border-radius: 5px;
             font-size: 16px;
+        }
+        .clear-cart:hover {
+            background: darkgray;
+        }
+        .total-price {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .proceed-payment {
+            background: green;
         }
         .proceed-payment:hover {
             background: darkgreen;
@@ -233,6 +267,7 @@
         <h2>Your Cart</h2>
         <ul id="cartItems" class="cart-items"></ul>
         <p id="totalPrice" class="total-price">Total Price: ₹0</p>
+        <button class="clear-cart" onclick="clearCart()">Clear Cart</button>
         <button class="proceed-payment" onclick="proceedToPayment()">Proceed to Payment</button>
     </div>
 
