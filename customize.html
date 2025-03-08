@@ -148,7 +148,7 @@
         
             <h3>Choose an Ingredient to Add:</h3>
             <select id="addIngredient"></select>
-            <button class="add-btn" onclick="addIngredient()">Add Item (+₹0)</button>
+            <button class="add-btn" onclick="addIngredient()">Add Item (+₹10)</button>
         
             <h3>Add Another Ingredient:</h3>
             <input type="text" id="customIngredient" placeholder="Enter ingredient name">
@@ -732,7 +732,7 @@
             }
         }
 
-        // Add Ingredient (+₹0)
+        // Add Ingredient (+₹10)
         function addIngredient() {
             const addIngredientSelect = document.getElementById("addIngredient");
             const selectedIngredient = addIngredientSelect.value;
@@ -740,7 +740,7 @@
             if (selectedIngredient && !addedIngredients.includes(selectedIngredient)) {
                 addedIngredients.push(selectedIngredient);
                 updateAddedIngredientsList();
-                totalPrice += 0;
+                totalPrice += 10;
                 document.getElementById("totalPrice").innerText = totalPrice;
             }
         }
