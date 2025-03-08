@@ -5,6 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Customize Your Dish</title>
     <style>
+        .header {
+            background-color: #333;
+            color: white;
+            padding: 15px 20px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
@@ -42,39 +53,132 @@
             font-size: 16px;
             cursor: pointer;
         }
+        .cart-section {
+            background: white;
+            padding: 20px;
+            margin: 20px;
+            max-width: 400px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            position: fixed;
+            right: -400px;
+            top: 0;
+            height: 100%;
+            transition: right 0.3s ease;
+            z-index: 1000;
+        }
+        .cart-section.open {
+            right: 0;
+        }
+        .close-cart {
+            background: red;
+            color: white;
+            border: none;
+            padding: 5px;
+            cursor: pointer;
+            font-size: 10px;
+            position: absolute;
+            top: 10px;
+            right: 5px;
+            border-radius: 5%;
+        }
+        .cart-items {
+            list-style: none;
+            padding: 0;
+        }
+        .cart-item {
+            background: #ffcc00;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .cart-buttons button {
+            background: red;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 3px;
+            margin-left: 5px;
+        }
+        .cart-buttons button:hover {
+            background: darkred;
+        }
+        .clear-cart, .proceed-payment {
+            background: black;
+            color: white;
+            padding: 10px;
+            width: 90%;
+            margin: 10px 0;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .clear-cart:hover {
+            background: darkgray;
+        }
+        .proceed-payment {
+            background: green;
+        }
+        .proceed-payment:hover {
+            background: darkgreen;
+        }
         .add-btn { background-color: green; color: white; }
         .remove-btn { background-color: red; color: white; }
         .custom-btn { background-color: orange; color: white; }
         .proceed-btn { background-color: blue; color: white; }
+        .cart-btn { background-color: purple; color: white; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h2>Customize Your Dish</h2>
-        <p>Base Price: ₹<span id="basePrice">0</span></p>
+    <body>
+        <div class="header">
+            <span></span>
+            <button class="cart" onclick="toggleCart()">Cart<span id="cartCounter" class="cart-counter">0</span></button>
+        </div>
     
-        <h3>Choose an Ingredient to Add:</h3>
-        <select id="addIngredient"></select>
-        <button class="add-btn" onclick="addIngredient()">Add Item (+₹0)</button>
+        <div class="container">
+            <h2>Customize Your Dish</h2>
+            <p>Base Price: ₹<span id="basePrice">0</span></p>
+        
+            <h3>Choose an Ingredient to Add:</h3>
+            <select id="addIngredient"></select>
+            <button class="add-btn" onclick="addIngredient()">Add Item (+₹0)</button>
+        
+            <h3>Add Another Ingredient:</h3>
+            <input type="text" id="customIngredient" placeholder="Enter ingredient name">
+            <button class="custom-btn" onclick="addCustomIngredient()">Add Custom (+₹10)</button>
+        
+            <h3>Remove an Ingredient:</h3>
+            <select id="removeIngredient"></select>
+            <button class="remove-btn" onclick="removeIngredient()">Remove Item (-₹5)</button>
+        
+            <h3>Added Ingredients:</h3>
+            <ul id="addedIngredientsList"></ul>
+        
+            <h3>Removed Ingredients:</h3>
+            <ul id="removedIngredientsList"></ul>
+        
+            <h3>Total Price: ₹<span id="totalPrice">0</span></h3>
+            <button class="cart-btn" onclick="addToCart()">Add to Cart</button>
+            <button class="proceed-btn" onclick="proceedToPayment()">Proceed to Payment</button>
+        </div>
     
-        <h3>Add Another Ingredient:</h3>
-        <input type="text" id="customIngredient" placeholder="Enter ingredient name">
-        <button class="custom-btn" onclick="addCustomIngredient()">Add Custom (+₹10)</button>
+        <!-- Cart Section -->
+        <div class="cart-section" id="cartSection">
+            <button class="close-cart" onclick="toggleCart()">×</button>
+            <h2>Cart</h2>
+            <ul class="cart-items" id="cartItems"></ul>
+            <div class="total-price">Total: ₹<span id="cartTotalPrice">0</span></div>
+            <button class="clear-cart" onclick="clearCart()">Clear Cart</button>
+            <button class="proceed-payment" onclick="proceedToPayment()">Proceed to Payment</button>
+        </div>
     
-        <h3>Remove an Ingredient:</h3>
-        <select id="removeIngredient"></select>
-        <button class="remove-btn" onclick="removeIngredient()">Remove Item (-₹5)</button>
-    
-        <h3>Added Ingredients:</h3>
-        <ul id="addedIngredientsList"></ul>
-    
-        <h3>Removed Ingredients:</h3>
-        <ul id="removedIngredientsList"></ul>
-    
-        <h3>Total Price: ₹<span id="totalPrice">0</span></h3>
-        <button class="proceed-btn" onclick="proceedToPayment()">Proceed to Payment</button>
-    </div>
-
     <script>
         // Ingredient Data for Each Dish
         const dishIngredients = {
@@ -594,93 +698,158 @@
     };
 
     let selectedDish = "";
-let totalPrice = 0;
-let addedIngredients = []; // Track added ingredients
-let removedIngredients = []; // Track removed ingredients
+        let totalPrice = 0;
+        let addedIngredients = []; // Track added ingredients
+        let removedIngredients = []; // Track removed ingredients
+        let cart = []; // Track cart items
 
-// Load Data on Page Load
-window.onload = function () {
-    const urlParams = new URLSearchParams(window.location.search);
-    selectedDish = urlParams.get("name");
-    totalPrice = parseInt(urlParams.get("price"), 10);
+        // Load Data on Page Load
+        window.onload = function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            selectedDish = urlParams.get("name");
+            totalPrice = parseInt(urlParams.get("price"), 10);
 
-    document.getElementById("basePrice").innerText = totalPrice;
-    document.getElementById("totalPrice").innerText = totalPrice;
+            document.getElementById("basePrice").innerText = totalPrice;
+            document.getElementById("totalPrice").innerText = totalPrice;
 
-    updateIngredientLists();
-};
+            updateIngredientLists();
+        };
 
-// Update Ingredient Dropdowns Based on Selected Dish
-function updateIngredientLists() {
-    const addIngredientSelect = document.getElementById("addIngredient");
-    const removeIngredientSelect = document.getElementById("removeIngredient");
+        // Update Ingredient Dropdowns Based on Selected Dish
+        function updateIngredientLists() {
+            const addIngredientSelect = document.getElementById("addIngredient");
+            const removeIngredientSelect = document.getElementById("removeIngredient");
 
-    addIngredientSelect.innerHTML = "";
-    removeIngredientSelect.innerHTML = "";
+            addIngredientSelect.innerHTML = "";
+            removeIngredientSelect.innerHTML = "";
 
-    if (selectedDish && dishIngredients[selectedDish]) {
-        dishIngredients[selectedDish].forEach(ingredient => {
-            let option = new Option(ingredient, ingredient);
-            addIngredientSelect.add(option);
-            removeIngredientSelect.add(new Option(ingredient, ingredient));
-        });
-    }
-}
+            if (selectedDish && dishIngredients[selectedDish]) {
+                dishIngredients[selectedDish].forEach(ingredient => {
+                    let option = new Option(ingredient, ingredient);
+                    addIngredientSelect.add(option);
+                    removeIngredientSelect.add(new Option(ingredient, ingredient));
+                });
+            }
+        }
 
-// Add Ingredient (+₹0)
-function addIngredient() {
-    const addIngredientSelect = document.getElementById("addIngredient");
-    const selectedIngredient = addIngredientSelect.value;
+        // Add Ingredient (+₹0)
+        function addIngredient() {
+            const addIngredientSelect = document.getElementById("addIngredient");
+            const selectedIngredient = addIngredientSelect.value;
 
-    if (selectedIngredient && !addedIngredients.includes(selectedIngredient)) {
-        addedIngredients.push(selectedIngredient);
-        updateAddedIngredientsList();
-        totalPrice += 0;
-        document.getElementById("totalPrice").innerText = totalPrice;
-    }
-}
+            if (selectedIngredient && !addedIngredients.includes(selectedIngredient)) {
+                addedIngredients.push(selectedIngredient);
+                updateAddedIngredientsList();
+                totalPrice += 0;
+                document.getElementById("totalPrice").innerText = totalPrice;
+            }
+        }
 
-// Add Custom Ingredient (+₹10)
-function addCustomIngredient() {
-    const customIngredient = document.getElementById("customIngredient").value.trim();
-    if (customIngredient && !addedIngredients.includes(customIngredient)) {
-        addedIngredients.push(customIngredient);
-        updateAddedIngredientsList();
-        totalPrice += 10;
-        document.getElementById("totalPrice").innerText = totalPrice;
-        document.getElementById("customIngredient").value = ""; // Clear input
-    }
-}
+        // Add Custom Ingredient (+₹10)
+        function addCustomIngredient() {
+            const customIngredient = document.getElementById("customIngredient").value.trim();
+            if (customIngredient && !addedIngredients.includes(customIngredient)) {
+                addedIngredients.push(customIngredient);
+                updateAddedIngredientsList();
+                totalPrice += 10;
+                document.getElementById("totalPrice").innerText = totalPrice;
+                document.getElementById("customIngredient").value = ""; // Clear input
+            }
+        }
 
-// Remove Ingredient (-₹5)
-function removeIngredient() {
-    const removeIngredientSelect = document.getElementById("removeIngredient");
-    const selectedIngredient = removeIngredientSelect.value;
+        // Remove Ingredient (-₹5)
+        function removeIngredient() {
+            const removeIngredientSelect = document.getElementById("removeIngredient");
+            const selectedIngredient = removeIngredientSelect.value;
 
-    if (selectedIngredient && !removedIngredients.includes(selectedIngredient)) {
-        removedIngredients.push(selectedIngredient);
-        updateRemovedIngredientsList();
-        totalPrice -= 5;
-        document.getElementById("totalPrice").innerText = totalPrice;
-    }
-}
+            if (selectedIngredient && !removedIngredients.includes(selectedIngredient)) {
+                removedIngredients.push(selectedIngredient);
+                updateRemovedIngredientsList();
+                totalPrice -= 5;
+                document.getElementById("totalPrice").innerText = totalPrice;
+            }
+        }
 
-// Update Added Ingredients List
-function updateAddedIngredientsList() {
-    const addedIngredientsList = document.getElementById("addedIngredientsList");
-    addedIngredientsList.innerHTML = addedIngredients.map(ingredient => `<li>${ingredient}</li>`).join("");
-}
+        // Update Added Ingredients List
+        function updateAddedIngredientsList() {
+            const addedIngredientsList = document.getElementById("addedIngredientsList");
+            addedIngredientsList.innerHTML = addedIngredients.map(ingredient => `<li>${ingredient}</li>`).join("");
+        }
 
-// Update Removed Ingredients List
-function updateRemovedIngredientsList() {
-    const removedIngredientsList = document.getElementById("removedIngredientsList");
-    removedIngredientsList.innerHTML = removedIngredients.map(ingredient => `<li>${ingredient}</li>`).join("");
-}
+        // Update Removed Ingredients List
+        function updateRemovedIngredientsList() {
+            const removedIngredientsList = document.getElementById("removedIngredientsList");
+            removedIngredientsList.innerHTML = removedIngredients.map(ingredient => `<li>${ingredient}</li>`).join("");
+        }
 
-// Proceed to Payment
-function proceedToPayment() {
-    window.location.href = "payment.html";
-}
+        // Add to Cart
+        function addToCart() {
+            const cartItem = {
+                dish: selectedDish,
+                totalPrice: totalPrice,
+                addedIngredients: addedIngredients,
+                removedIngredients: removedIngredients
+            };
+            cart.push(cartItem);
+            updateCartCounter();
+            updateCartDisplay();
+            alert("Item added to cart!");
+        }
+
+        // Update Cart Counter
+        function updateCartCounter() {
+            document.getElementById("cartCounter").innerText = cart.length;
+        }
+
+        // Update Cart Display
+        function updateCartDisplay() {
+            const cartItems = document.getElementById("cartItems");
+            const cartTotalPrice = document.getElementById("cartTotalPrice");
+            let total = 0;
+
+            cartItems.innerHTML = cart.map((item, index) => {
+                total += item.totalPrice;
+                return `
+                    <li class="cart-item">
+                        <span>${item.dish} - ₹${item.totalPrice}</span>
+                        <div class="cart-buttons">
+                            <button onclick="removeCartItem(${index})">Remove</button>
+                        </div>
+                    </li>
+                `;
+            }).join("");
+
+            cartTotalPrice.innerText = total;
+        }
+
+        // Remove Cart Item
+        function removeCartItem(index) {
+            cart.splice(index, 1);
+            updateCartCounter();
+            updateCartDisplay();
+        }
+
+        // Clear Cart
+        function clearCart() {
+            cart = [];
+            updateCartCounter();
+            updateCartDisplay();
+        }
+
+        // Toggle Cart Visibility
+        function toggleCart() {
+            const cartSection = document.getElementById("cartSection");
+            cartSection.classList.toggle("open");
+        }
+
+        // Proceed to Payment
+        function proceedToPayment() {
+            if (cart.length === 0) {
+                alert("Your cart is empty. Please add items to the cart first.");
+                return;
+            }
+            window.location.href = "payment.html";
+        }
     </script>
-    </body>
-    </html>
+</body>
+</html>
