@@ -23,6 +23,13 @@
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
             text-align: center;
             width: 350px;
+            position: relative;
+        }
+
+        .logo {
+            width: 100px;
+            height: auto;
+            margin-bottom: 15px;
         }
 
         h1 {
@@ -103,7 +110,6 @@
             height: 100%;
             object-fit: cover;
         }
-
     </style>
 </head>
 <body>
@@ -116,6 +122,7 @@
             </video>
         </div>
 
+        <img src="Images/Logo.jpg" alt="Restaurant Logo" class="logo">
         <h1>Order Tracking</h1>
 
         <div class="progress-container">
@@ -137,12 +144,12 @@
             setTimeout(() => {
                 orderReceived.classList.add('active', 'fade-in');
                 statusMessage.textContent = "Order Received!";
-            }, 1000);
+            }, 1050);
 
             setTimeout(() => {
                 cooking.classList.add('active', 'fade-in');
                 statusMessage.textContent = "Cooking your order...";
-            }, 3000);
+            }, 3050);
 
             setTimeout(() => {
                 ready.classList.add('active', 'fade-in');
