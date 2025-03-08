@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Tracking</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 350px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #333;
+        }
+
+        /* Order Progress */
+        .progress-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            margin: 30px 0;
+        }
+
+        .progress-container::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 5px;
+            background: #ddd;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            z-index: -1;
+        }
+
+        .step {
+            width: 60px;
+            height: 60px;
+            background: #ddd;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 14px;
+            font-weight: bold;
+            transition: 0.5s;
+            color: #555;
+        }
+
+        .step.active {
+            background: #4CAF50;
+            color: white;
+            box-shadow: 0 0 15px rgba(76, 175, 80, 0.8);
+        }
+
+        /* Animations */
+        .fade-in {
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .video-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .video-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="video-container">
+            <video autoplay muted loop>
+                <source src="Images/vid5.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+
+        <h1>Order Tracking</h1>
+
+        <div class="progress-container">
+            <div class="step" id="orderReceived">*</div>
+            <div class="step" id="cooking">*</div>
+            <div class="step" id="ready">*</div>
+        </div>
+
+        <p id="statusMessage">Waiting for Order Status...</p>
+    </div>
+
+    <script>
+        function updateStatus() {
+            const orderReceived = document.getElementById('orderReceived');
+            const cooking = document.getElementById('cooking');
+            const ready = document.getElementById('ready');
+            const statusMessage = document.getElementById('statusMessage');
+
+            setTimeout(() => {
+                orderReceived.classList.add('active', 'fade-in');
+                statusMessage.textContent = "Order Received!";
+            }, 1000);
+
+            setTimeout(() => {
+                cooking.classList.add('active', 'fade-in');
+                statusMessage.textContent = "Cooking your order...";
+            }, 3000);
+
+            setTimeout(() => {
+                ready.classList.add('active', 'fade-in');
+                statusMessage.textContent = "Your order is ready!";
+            }, 9050);
+        }
+
+        updateStatus();
+    </script>
+
+</body>
+</html>
