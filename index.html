@@ -5,93 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Verify OTP</title>
     <style>
+        /* Global styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
         body {
-            font-family: Arial, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            margin: 0;
-            background-color: #f4f4f4;
-            background-image: url('../images/photo.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
-        
-        .container {
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 300px;
-            text-align: center;
+            overflow: hidden;
         }
 
-        input[type="password"], input[type="number"] {
-            width: calc(100% - 22px);
-            padding: 10px;
-            margin-bottom: 20px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 16px;
-            box-sizing: border-box;
-        }
-
-        input[type="text"], input[type="text"] {
-            width: calc(100% - 22px);
-            padding: 10px;
-            margin-bottom: 20px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 16px;
-            box-sizing: border-box;
-        }
-
-        input[type="number"]::-webkit-outer-spin-button,
-        input[type="number"]::-webkit-inner-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
-
-        button {
-            padding: 10px;
-            border: none;
-            border-radius: 4px;
-            background-color: Green;
-            color: white;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            margin: 5px;
-        }
-
-        button:hover {
-            background-color: lightgreen;
-        }
-
-        .back-button {
-            background-color: Red;
-            color: #ffffff;
-        }
-
-        .back-button1 {
-            background-color: blue;
-            color: #ffffff;
-        }
-
-        .back-button:hover {
-            background-color: lightgreen;
-            color: #ffffff;
-        }
-
-        .logo {
-            width: 100px; 
-            height: auto;
-            display: block;
-            margin: 0 auto 20px;
-        }
-
+        /* Background Video */
         .video-container {
             position: fixed;
             top: 0;
@@ -108,7 +38,88 @@
             object-fit: cover;
         }
 
+        /* Glassmorphism Container */
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            text-align: center;
+            width: 350px;
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .logo {
+            width: 80px;
+            height: auto;
+            margin-bottom: 15px;
+        }
+
+        /* Input Fields */
+        .input-container {
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        .input-container input {
+            width: 100%;
+            padding: 12px 40px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .input-container i {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: gray;
+            font-size: 18px;
+        }
+
+        /* Buttons */
+        button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: 0.3s ease-in-out;
+            font-weight: bold;
+        }
+
+        .submit-btn {
+            background: linear-gradient(45deg, #28a745, #218838);
+            color: white;
+        }
+
+        .submit-btn:hover {
+            background: linear-gradient(45deg, #218838, #1e7e34);
+        }
+
+        .resend-btn {
+            background: linear-gradient(45deg, #007bff, #0056b3);
+            color: white;
+            margin-top: 10px;
+        }
+
+        .resend-btn:hover {
+            background: linear-gradient(45deg, #0056b3, #003f7f);
+        }
+
+        /* Message Styling */
+        #message {
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
     </style>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
 
@@ -121,11 +132,25 @@
 
     <div class="container">
         <img src="Images/Logo.jpg" alt="Restaurant Logo" class="logo">
-        <input type="text" id="Name" placeholder="Enter your Name">
-        <input type="number" id="mobileNumberInput" placeholder="Enter your Mobile number">
-        <input type="password" id="OTPInput" placeholder="Enter OTP 1234" required>
-        <button onclick="verifyOTP()">Submit</button>
-        <button class="back-button1" onclick="resendOTP()">Resend OTP</button>
+        
+        <div class="input-container">
+            <i class="fas fa-user"></i>
+            <input type="text" id="Name" placeholder="Enter your Name">
+        </div>
+
+        <div class="input-container">
+            <i class="fas fa-phone-alt"></i>
+            <input type="number" id="mobileNumberInput" placeholder="Enter your Mobile Number">
+        </div>
+
+        <div class="input-container">
+            <i class="fas fa-lock"></i>
+            <input type="password" id="OTPInput" placeholder="Enter OTP 1234" required>
+        </div>
+
+        <button class="submit-btn" onclick="verifyOTP()">Submit</button>
+        <button class="resend-btn" onclick="resendOTP()">Resend OTP</button>
+
         <p id="message"></p>
     </div>
 
@@ -146,8 +171,9 @@
         }
 
         function resendOTP() {
-            alert('OTP has been resent to your mobile number.');
+            alert('OTP has been resent to your mobile number 1234.');
         }
     </script>
+
 </body>
 </html>
