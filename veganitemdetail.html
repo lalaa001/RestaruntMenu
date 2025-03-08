@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Item Details</title>
+    <style>
+        .card {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            text-align: center;
+        }
+        .logo-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .logo {
+            width: 150px; 
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="logo-container">
+        <img src="Images/logo.jpg" alt="Restaurant Logo" class="logo">
+    </div>
+    <div class="logo-container">
+        <img src="Images/logo.jpg" alt="Restaurant Logo" class="logo">
+    </div>
+    <div class="card" id="itemDetails">Loading...</div>
+    <script>
+        const menuItems = {
+    "Chickpea & Spinach Curry": {
+        "Price": "200",
+        "ingredients": [
+            "1 can chickpeas (drained & rinsed)",
+            "2 cups spinach",
+            "1 onion (chopped)",
+            "2 cloves garlic (minced)",
+            "1 tsp cumin",
+            "1 tsp turmeric",
+            "1 can diced tomatoes",
+            "1 cup coconut milk",
+            "1 tbsp olive oil",
+            "Salt & pepper to taste"
+        ],
+        "nutrition": {
+            "Calories": "250",
+            "Protein": "9g",
+            "Carbs": "30g",
+            "Fat": "10g"
+        }
+    },
+    "Vegan Lentil Soup": {
+        "Price": "180",
+        "ingredients": [
+            "1 cup lentils (rinsed)",
+            "1 carrot (chopped)",
+            "1 onion (chopped)",
+            "2 celery stalks (chopped)",
+            "4 cups vegetable broth",
+            "1 can diced tomatoes",
+            "2 cloves garlic (minced)",
+            "1 tsp cumin",
+            "1 tsp thyme",
+            "Salt & pepper to taste"
+        ],
+        "nutrition": {
+            "Calories": "230",
+            "Protein": "12g",
+            "Carbs": "35g",
+            "Fat": "3g"
+        }
+    },
+    "Vegan Tofu Stir-Fry": {
+        "Price": "250",
+        "ingredients": [
+            "1 block tofu (cubed)",
+            "1 bell pepper (sliced)",
+            "1 zucchini (sliced)",
+            "1 carrot (julienned)",
+            "2 tbsp soy sauce",
+            "1 tbsp sesame oil",
+            "1 tsp ginger (grated)",
+            "2 cloves garlic (minced)",
+            "1 tbsp cornstarch (optional for thickening)"
+        ],
+        "nutrition": {
+            "Calories": "280",
+            "Protein": "14g",
+            "Carbs": "20g",
+            "Fat": "15g"
+        }
+    },
+    "Vegan Avocado Toast with Chickpeas": {
+        "Price": "220",
+        "ingredients": [
+            "1 avocado (mashed)",
+            "½ cup chickpeas (seasoned & mashed)",
+            "1 slice whole-grain bread",
+            "1 tsp lemon juice",
+            "1 tsp olive oil",
+            "Salt, pepper & red pepper flakes to taste"
+        ],
+        "nutrition": {
+            "Calories": "320",
+            "Protein": "10g",
+            "Carbs": "35g",
+            "Fat": "18g"
+        }
+    },
+    "Vegan Buddha Bowl": {
+        "Price": "300",
+        "ingredients": [
+            "½ cup quinoa (cooked)",
+            "½ cup roasted sweet potatoes",
+            "½ cup chickpeas",
+            "½ cup kale (chopped)",
+            "1 tbsp tahini",
+            "1 tsp lemon juice",
+            "Salt & pepper to taste"
+        ],
+        "nutrition": {
+            "Calories": "350",
+            "Protein": "12g",
+            "Carbs": "45g",
+            "Fat": "10g"
+        }
+    },
+    "Vegan Black Bean Tacos": {
+        "Price": "280",
+        "ingredients": [
+            "1 cup black beans (cooked)",
+            "½ tsp cumin",
+            "½ tsp chili powder",
+            "1 tbsp lime juice",
+            "2 corn tortillas",
+            "½ avocado (sliced)",
+            "¼ cup salsa",
+            "¼ cup shredded lettuce"
+        ],
+        "nutrition": {
+            "Calories": "300",
+            "Protein": "12g",
+            "Carbs": "40g",
+            "Fat": "8g"
+        }
+    },
+    "Vegan Peanut Butter Oatmeal": {
+        "Price": "150",
+        "ingredients": [
+            "½ cup oats",
+            "1 cup almond milk",
+            "1 tbsp peanut butter",
+            "½ banana (sliced)",
+            "1 tsp chia seeds",
+            "½ tsp cinnamon"
+        ],
+        "nutrition": {
+            "Calories": "350",
+            "Protein": "10g",
+            "Carbs": "45g",
+            "Fat": "12g"
+        }
+    },
+    "Vegan Chickpea Salad Sandwich": {
+        "Price": "200",
+        "ingredients": [
+            "1 cup chickpeas (mashed)",
+            "1 tbsp vegan mayo",
+            "1 tsp mustard",
+            "1 tbsp lemon juice",
+            "¼ cup celery (chopped)",
+            "¼ cup red onion (chopped)",
+            "2 slices whole wheat bread"
+        ],
+        "nutrition": {
+            "Calories": "400",
+            "Protein": "15g",
+            "Carbs": "50g",
+            "Fat": "10g"
+        }
+    },
+    "Vegan Mushroom Risotto": {
+        "Price": "320",
+        "ingredients": [
+            "1 cup arborio rice",
+            "2 cups vegetable broth",
+            "1 cup mushrooms (sliced)",
+            "1 tbsp olive oil",
+            "1 clove garlic (minced)",
+            "1 tbsp nutritional yeast",
+            "Salt & pepper to taste"
+        ],
+        "nutrition": {
+            "Calories": "320",
+            "Protein": "8g",
+            "Carbs": "55g",
+            "Fat": "6g"
+        }
+    },
+    "Vegan Chocolate Chia Pudding": {
+        "Price": "180",
+        "ingredients": [
+            "¼ cup chia seeds",
+            "1 cup almond milk",
+            "1 tbsp cocoa powder",
+            "1 tbsp maple syrup",
+            "½ tsp vanilla extract"
+        ],
+        "nutrition": {
+            "Calories": "250",
+            "Protein": "6g",
+            "Carbs": "30g",
+            "Fat": "10g"
+        }
+    }
+}
+async function loadItemDetails() {
+            try {
+                // Get item name from URL
+                const urlParams = new URLSearchParams(window.location.search);
+                const itemName = decodeURIComponent(urlParams.get('name') || "").trim();
+
+                console.log("Requested Item:", itemName); // Debugging
+
+                // Simulating API fetch (Replace with real API if needed)
+                await new Promise(resolve => setTimeout(resolve, 500)); // Simulating delay
+
+                // Check if item exists
+                const item = menuItems[itemName];
+
+                if (item) {
+                    document.getElementById('itemDetails').innerHTML = `
+                        <h2>${itemName}</h2>
+                        <h3>Ingredients:</h3>
+                        <ul>${item.ingredients.map(ing => `<li>${ing}</li>`).join('')}</ul>
+                        <h3>Nutrition:</h3>
+                        <p>Calories: ${item.nutrition.Calories}</p>
+                        <p>Carbs: ${item.nutrition.Carbs}</p>
+                        <p>Protein: ${item.nutrition.Protein}</p>
+                        <p>Fat: ${item.nutrition.Fat}</p>
+                    `;
+                } else {
+                    document.getElementById('itemDetails').innerHTML = `<h2>Item Not Found</h2>`;
+                }
+            } catch (error) {
+                console.error("Error loading item:", error);
+                document.getElementById('itemDetails').innerHTML = `<h2>Error loading data</h2>`;
+            }
+        }
+
+        // Load the details when the page loads
+        loadItemDetails();
+    </script>
+</body>
+</html>

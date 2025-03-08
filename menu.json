@@ -1,0 +1,1165 @@
+{
+    "Veg Alfredo Pasta": {
+        "Price": "200",
+        "ingredients": [
+            "Pasta (200g)",
+            "Butter (1 tbsp)",
+            "Garlic (2 cloves, minced)",
+            "Cream (½ cup)",
+            "Milk (½ cup)",
+            "Cheese (¼ cup)",
+            "Black pepper (½ tsp)",
+            "Salt",
+            "Mixed vegetables (½ cup)"
+        ],
+        "nutrition": {
+            "Calories": "450",
+            "Carbs": "55g",
+            "Protein": "12g",
+            "Fat": "18g"
+        }
+    },
+    "Mediterranean Couscous Salad": {
+        "Price": "200",
+        "ingredients": [
+            "Couscous (1 cup)",
+            "Cherry tomatoes (½ cup)",
+            "Cucumber (½ cup, chopped)",
+            "Feta cheese (¼ cup)",
+            "Olive oil (1 tbsp)",
+            "Lemon juice (1 tbsp)",
+            "Salt"
+        ],
+        "nutrition": {
+            "Calories": "260",
+            "Carbs": "35g",
+            "Protein": "8g",
+            "Fat": "10g"
+        },
+    "Mexican Bean & Rice Bowl": {
+        "Price": "200",
+        "ingredients": [
+            "Cooked rice (1 cup)",
+            "Black beans (½ cup, boiled)",
+            "Corn (¼ cup)",
+            "Bell peppers (½ cup, chopped)",
+            "Salsa (¼ cup)",
+            "Cumin (½ tsp)",
+            "Lime juice",
+            "Salt"
+        ],
+        "nutrition": {
+            "Calories": "380",
+            "Carbs": "55g",
+            "Protein": "14g",
+            "Fat": "6g"
+        },
+        "Veg Lasagna": {
+        "Price": "200",
+        "ingredients": [
+            "Lasagna sheets (6)",
+            "Ricotta cheese (½ cup)",
+            "Mozzarella (½ cup)",
+            "Tomato sauce (1 cup)",
+            "Spinach (1 cup)",
+            "Zucchini (1, sliced)",
+            "Olive oil (1 tbsp)",
+            "Oregano (½ tsp)",
+            "Salt"
+        ],
+        "nutrition": {
+            "Calories": "380",
+            "Carbs": "45g",
+            "Protein": "15g",
+            "Fat": "14g"
+        }
+    },
+    "Mushroom Risotto": {
+        "Price": "250",
+        "ingredients": [
+            "Arborio rice (1 cup)",
+            "Mushrooms (1 cup, sliced)",
+            "Vegetable broth (3 cups)",
+            "Onion (1, chopped)",
+            "Garlic (2 cloves, minced)",
+            "Parmesan (¼ cup)",
+            "Butter (1 tbsp)",
+            "Black pepper (½ tsp)",
+            "Salt"
+        ],
+        "nutrition": {
+            "Calories": "320",
+            "Carbs": "50g",
+            "Protein": "10g",
+            "Fat": "8g"
+        }
+    },
+    "Cheesy Garlic Bread with Veggies": {
+        "Price": "300",
+        "ingredients": [
+            "Baguette (½)",
+            "Butter (2 tbsp)",
+            "Garlic (2 cloves, minced)",
+            "Mozzarella (½ cup)",
+            "Bell peppers (½ cup, sliced)",
+            "Oregano (½ tsp)",
+            "Salt"
+        ],
+        "nutrition": {
+            "Calories": "320",
+            "Carbs": "40g",
+            "Protein": "10g",
+            "Fat": "14g"
+        }
+    },
+    "Vegetable Khichdi": {
+        "Price": "350",
+        "ingredients": [
+            "Rice (1 cup)",
+            "Moong dal (½ cup)",
+            "Mixed vegetables (1 cup)",
+            "Cumin (½ tsp)",
+            "Turmeric (½ tsp)",
+            "Salt",
+            "Ghee"
+        ],
+        "nutrition": {
+            "Calories": "300",
+            "Carbs": "50g",
+            "Protein": "12g",
+            "Fat": "6g"
+        }
+    },
+    "Paneer Butter Masala": {
+        "Price": "400",
+        "ingredients": [
+            "Paneer (200g)",
+            "Tomato puree (1 cup)",
+            "Onion (1, chopped)",
+            "Ginger-garlic paste (1 tsp)",
+            "Garam masala (½ tsp)",
+            "Butter (2 tbsp)",
+            "Cream (2 tbsp)",
+            "Salt"
+        ],
+        "nutrition": {
+            "Calories": "350",
+            "Carbs": "15g",
+            "Protein": "18g",
+            "Fat": "25g"
+        }
+    },
+    "Chana Masala": {
+        "Price": "450",
+        "ingredients": [
+            "Chickpeas (1 cup, boiled)",
+            "Onion (1, chopped)",
+            "Tomato (1, chopped)",
+            "Ginger-garlic paste (1 tsp)",
+            "Chana masala powder (1 tsp)",
+            "Cumin (½ tsp)",
+            "Salt"
+        ],
+        "nutrition": {
+            "Calories": "280",
+            "Carbs": "40g",
+            "Protein": "12g",
+            "Fat": "7g"
+        }
+    },
+    "Grilled Veggie Wrap": {
+        "Price": "500",
+        "ingredients": [
+            "Whole wheat tortilla (1)",
+            "Bell peppers (½ cup, sliced)",
+            "Zucchini (½ cup, sliced)",
+            "Feta cheese (¼ cup)",
+            "Hummus (2 tbsp)",
+            "Olive oil (1 tbsp)",
+            "Salt",
+            "Black pepper"
+        ],
+        "nutrition": {
+            "Calories": "280",
+            "Carbs": "35g",
+            "Protein": "8g",
+            "Fat": "10g"
+        }
+    },
+    "Spinach & Ricotta Stuffed Peppers": {
+        "Price": "550",
+        "ingredients": [
+            "Bell peppers (2, halved)",
+            "Ricotta cheese (½ cup)",
+            "Spinach (1 cup)",
+            "Breadcrumbs (¼ cup)",
+            "Garlic (2 cloves, minced)",
+            "Olive oil (1 tbsp)",
+            "Black pepper (½ tsp)",
+            "Salt"
+        ],
+        "nutrition": {
+            "Calories": "260",
+            "Carbs": "20g",
+            "Protein": "10g",
+            "Fat": "12g"
+        }
+    },
+    "Stir-Fried Tofu & Vegetables": {
+        "Price": "600",
+        "ingredients": [
+            "Firm tofu (200g, cubed)",
+            "Bell peppers (1 cup, sliced)",
+            "Broccoli (½ cup)",
+            "Soy sauce (2 tbsp)",
+            "Sesame oil (1 tbsp)",
+            "Garlic (2 cloves, minced)",
+            "Black pepper (½ tsp)",
+            "Salt"
+        ],
+        "nutrition": {
+            "Calories": "280",
+            "Carbs": "20g",
+            "Protein": "18g",
+            "Fat": "12g"
+        }
+    },
+    "Veggie Burger": {
+        "Price": "650",
+        "ingredients": [
+            "Burger bun (1)",
+            "Chickpeas (½ cup, mashed)",
+            "Onion (½, chopped)",
+            "Garlic (1 clove, minced)",
+            "Breadcrumbs (¼ cup)",
+            "Paprika (½ tsp)",
+            "Olive oil (1 tbsp)",
+            "Salt"
+        ],
+        "nutrition": {
+            "Calories": "350",
+            "Carbs": "45g",
+            "Protein": "12g",
+            "Fat": "10g"
+        }
+    },
+    "Pesto Pasta": {
+        "Price": "700",
+        "ingredients": [
+            "Pasta (200g)",
+            "Basil leaves (1 cup)",
+            "Olive oil (2 tbsp)",
+            "Garlic (2 cloves)",
+            "Parmesan (¼ cup)",
+            "Pine nuts (2 tbsp)",
+            "Salt"
+        ],
+        "nutrition": {
+            "Calories": "400",
+            "Carbs": "50g",
+            "Protein": "10g",
+            "Fat": "18g"
+        }
+    },
+    "Mediterranean Couscous Salad": {
+        "Price": "750",
+        "ingredients": [
+            "Couscous (1 cup)",
+            "Cherry tomatoes (½ cup)",
+            "Cucumber (½ cup, chopped)",
+            "Feta cheese (¼ cup)",
+            "Olive oil (1 tbsp)",
+            "Lemon juice (1 tbsp)",
+            "Salt"
+        ],
+        "nutrition": {
+            "Calories": "260",
+            "Carbs": "35g",
+            "Protein": "8g",
+            "Fat": "10g"
+        }
+    },
+    "Creamy Broccoli Soup": {
+        "Price": "800",
+        "ingredients": [
+            "Broccoli (2 cups)",
+            "Vegetable broth (2 cups)",
+            "Onion (1, chopped)",
+            "Garlic (2 cloves, minced)",
+            "Cream (¼ cup)",
+            "Black pepper (½ tsp)",
+            "Salt"
+        ],
+        "nutrition": {
+            "Calories": "220",
+            "Carbs": "25g",
+            "Protein": "6g",
+            "Fat": "10g"
+        }
+    },
+    "Aloo Matar": {
+        "Price": "850",
+        "ingredients": [
+            "Potatoes (2, diced)",
+            "Green peas (1 cup)",
+            "Onion (1, chopped)",
+            "Tomato (1, chopped)",
+            "Cumin (½ tsp)",
+            "Turmeric (½ tsp)",
+            "Garam masala (½ tsp)",
+            "Salt"
+        ],
+        "nutrition": {
+            "Calories": "250",
+            "Carbs": "45g",
+            "Protein": "6g",
+            "Fat": "5g"
+        }
+    },
+    "Dal Tadka": {
+        "Price": "900",
+        "ingredients": [
+            "Toor dal (¾ cup)",
+            "Onion (1, chopped)",
+            "Tomato (1, chopped)",
+            "Garlic (4 cloves)",
+            "Cumin (½ tsp)",
+            "Turmeric (½ tsp)",
+            "Ghee (1 tbsp)",
+            "Salt"
+        ],
+        "nutrition": {
+            "Calories": "270",
+            "Carbs": "40g",
+            "Protein": "15g",
+            "Fat": "6g"
+        }
+    },
+    "Methi Thepla": {
+        "Price": "950",
+        "ingredients": [
+            "Whole wheat flour (1 cup)",
+            "Fresh fenugreek leaves (½ cup)",
+            "Turmeric (½ tsp)",
+            "Cumin (½ tsp)",
+            "Salt",
+            "Yogurt (2 tbsp)",
+            "Oil"
+        ],
+        "nutrition": {
+            "Calories": "240",
+            "Carbs": "40g",
+            "Protein": "8g",
+            "Fat": "6g"
+        }
+    },
+    "Baingan Bharta": {
+        "Price": "1000",
+        "ingredients": [
+            "Eggplant (1, roasted and mashed)",
+            "Onion (1, chopped)",
+            "Tomato (1, chopped)",
+            "Garlic (4 cloves)",
+            "Cumin (½ tsp)",
+            "Garam masala (½ tsp)",
+            "Oil",
+            "Salt"
+        ],
+        "nutrition": {
+            "Calories": "180",
+            "Carbs": "20g",
+            "Protein": "5g",
+            "Fat": "8g"
+        }
+    },
+    "Rajma Masala": {
+        "Price": "1050",
+        "ingredients": [
+            "Kidney beans (1 cup, boiled)",
+            "Onion (1, chopped)",
+            "Tomato (1, chopped)",
+            "Ginger-garlic paste (1 tsp)",
+            "Cumin (½ tsp)",
+            "Garam masala (½ tsp)",
+            "Salt"
+        ],
+        "nutrition": {
+            "Calories": "290",
+            "Carbs": "45g",
+            "Protein": "12g",
+            "Fat": "5g"
+        }
+    },
+    "Capsicum Besan Sabzi": {
+        "Price": "1100",
+        "ingredients": [
+            "Capsicum (2, diced)",
+            "Gram flour (¼ cup)",
+            "Cumin (½ tsp)",
+            "Turmeric (½ tsp)",
+            "Red chili powder (½ tsp)",
+            "Salt",
+            "Oil"
+        ],
+        "nutrition": {
+            "Calories": "220",
+            "Carbs": "30g",
+            "Protein": "6g",
+            "Fat": "9g"
+        }
+    },
+    "Vegetable Pulao": {
+        "Price": "1150",
+        "ingredients": [
+            "Basmati rice (1 cup)",
+            "Mixed vegetables (1 cup)",
+            "Cumin (½ tsp)",
+            "Bay leaf (1)",
+            "Garam masala (½ tsp)",
+            "Salt",
+            "Oil"
+        ],
+        "nutrition": {
+            "Calories": "280",
+            "Carbs": "50g",
+            "Protein": "6g",
+            "Fat": "5g"
+        }
+    },
+    "Kadhi Pakora": {
+        "Price": "1200",
+        "ingredients": [
+            "Besan (½ cup)",
+            "Yogurt (1 cup)",
+            "Turmeric (½ tsp)",
+            "Red chili powder (½ tsp)",
+            "Mustard seeds (½ tsp)",
+            "Curry leaves (6-8)",
+            "Salt",
+            "Oil"
+        ],
+        "nutrition": {
+            "Calories": "260",
+            "Carbs": "30g",
+            "Protein": "10g",
+            "Fat": "9g"
+        }
+    },
+    "Mushroom Masala": {
+        "Price": "1250",
+        "ingredients": [
+            "Mushrooms (200g, sliced)",
+            "Onion (1, chopped)",
+            "Tomato (1, chopped)",
+            "Garlic (4 cloves)",
+            "Cumin (½ tsp)",
+            "Garam masala (½ tsp)",
+            "Salt",
+            "Oil"
+        ],
+        "nutrition": {
+            "Calories": "200",
+            "Carbs": "15g",
+            "Protein": "7g",
+            "Fat": "10g"
+        }
+    },
+    "Garlic Butter Chicken Thighs": {
+        "Price": "200",
+        "ingredients": [
+            "2 bone-in, skin-on chicken thighs",
+            "2 tbsp butter",
+            "3 garlic cloves (minced)",
+            "1 tsp black pepper",
+            "Salt to taste"
+        ],
+        "nutrition": {
+            "Calories": 700,
+            "Protein": 50,
+            "Fat": 40,
+            "Carbs": 5
+        }
+    },
+    "Spicy Chicken Drumsticks": {
+        "Price": "250",
+        "ingredients": [
+            "3 chicken drumsticks",
+            "1 tbsp olive oil",
+            "1 tsp red chili powder",
+            "½ tsp black pepper",
+            "½ tsp paprika",
+            "Salt to taste"
+        ],
+        "nutrition": {
+            "Calories": 750,
+            "Protein": 55,
+            "Fat": 35,
+            "Carbs": 10
+        }
+    },
+    "Pan-Seared Chicken Breast with Veggies": {
+        "Price": "300",
+        "ingredients": [
+            "1 large chicken breast",
+            "1 tbsp olive oil",
+            "1 tsp black pepper",
+            "1 cup mixed vegetables (carrots, bell peppers, beans)",
+            "Salt to taste"
+        ],
+        "nutrition": {
+            "Calories": 600,
+            "Protein": 55,
+            "Fat": 20,
+            "Carbs": 15
+        }
+    },
+    "Creamy Garlic Chicken with Rice": {
+        "Price": "350",
+        "ingredients": [
+            "200g boneless chicken (sliced)",
+            "1 tbsp butter",
+            "4 garlic cloves (minced)",
+            "½ cup heavy cream",
+            "1 tsp black pepper",
+            "2 cups cooked rice",
+            "Salt to taste"
+        ],
+        "nutrition": {
+            "Calories": 750,
+            "Protein": 50,
+            "Fat": 35,
+            "Carbs": 80
+        }
+    },
+    "Creamy Coconut Chicken Curry with Rice": {
+        "Price": "400",
+        "ingredients": [
+            "200g boneless chicken (cub cubed)",
+            "1 cup coconut milk",
+            "1 tbsp oil",
+            "1 onion (chopped)",
+            "1 tsp red chili powder",
+            "2 cups cooked rice",
+            "Salt to taste"
+        ],
+        "nutrition": {
+            "Calories": 780,
+            "Protein": 50,
+            "Fat": 30,
+            "Carbs": 85
+        }
+    },
+    "Chicken and Egg Fried Rice": {
+        "Price": "350",
+        "ingredients": [
+            "2 cups cooked rice",
+            "200g boneless chicken (shredded)",
+            "2 eggs (scrambled)",
+            "1 onion (chopped)",
+            "1 tbsp soy sauce",
+            "1 tbsp oil",
+            "Salt to taste"
+        ],
+        "nutrition": {
+            "Calories": 800,
+            "Protein": 50,
+            "Fat": 25,
+            "Carbs": 90
+        }
+    },
+    "Spicy Garlic Chicken Wings": {
+        "Price": "380",
+        "ingredients": [
+            "6 chicken wings",
+            "2 tbsp butter",
+            "1 tsp red chili powder",
+            "1 tbsp soy sauce",
+            "4 garlic cloves (minced)",
+            "Salt to taste"
+        ],
+        "nutrition": {
+            "Calories": 850,
+            "Protein": 55,
+            "Fat": 45,
+            "Carbs": 60
+        }
+    },
+    "Chicken and Mushroom Stir-Fry with Rice": {
+        "Price": "360",
+        "ingredients": [
+            "200g boneless chicken (sliced)",
+            "½ cup mushrooms (sliced)",
+            "2 tbsp oil",
+            "1 tbsp soy sauce",
+            "1 tsp black pepper",
+            "2 cups cooked rice",
+            "Salt to taste"
+        ],
+        "nutrition": {
+            "Calories": 750,
+            "Protein": 48,
+            "Fat": 25,
+            "Carbs": 80
+        }
+    },
+    "Chicken and Egg Noodles Stir-Fry": {
+        "Price": "370",
+        "ingredients": [
+            "200g boneless chicken (sliced)",
+            "1 packet noodles (boiled)",
+            "2 eggs (scrambled)",
+            "1 onion (sliced)",
+            "½ cup capsicum (sliced)",
+            "2 tbsp soy sauce",
+            "1 tbsp vinegar",
+            "1 tsp black pepper",
+            "1 tbsp oil",
+            "Salt to taste"
+        ],
+        "nutrition": {
+            "Calories": 750,
+            "Protein": 45,
+            "Fat": 22,
+            "Carbs": 90
+        }
+    },
+    "Chicken and Egg Paratha": {
+        "Price": "400",
+        "ingredients": [
+            "2 cups wheat flour",
+            "200g boneless chicken (shredded)",
+            "2 eggs",
+            "1 tsp black pepper",
+            "2 tbsp butter",
+            "Salt to taste"
+        ],
+        "nutrition": {
+            "Calories": 850,
+            "Protein": 50,
+            "Fat": 35,
+            "Carbs": 90
+        }
+    },
+    "Chickpea & Spinach Curry": {
+        "Price": "200",
+        "ingredients": [
+            "1 can chickpeas (drained & rinsed)",
+            "2 cups spinach",
+            "1 onion (chopped)",
+            "2 cloves garlic (minced)",
+            "1 tsp cumin",
+            "1 tsp turmeric",
+            "1 can diced tomatoes",
+            "1 cup coconut milk",
+            "1 tbsp olive oil",
+            "Salt & pepper to taste"
+        ],
+        "nutrition": {
+            "Calories": "250",
+            "Protein": "9g",
+            "Carbs": "30g",
+            "Fat": "10g"
+        }
+    },
+    "Vegan Lentil Soup": {
+        "Price": "180",
+        "ingredients": [
+            "1 cup lentils (rinsed)",
+            "1 carrot (chopped)",
+            "1 onion (chopped)",
+            "2 celery stalks (chopped)",
+            "4 cups vegetable broth",
+            "1 can diced tomatoes",
+            "2 cloves garlic (minced)",
+            "1 tsp cumin",
+            "1 tsp thyme",
+            "Salt & pepper to taste"
+        ],
+        "nutrition": {
+            "Calories": "230",
+            "Protein": "12g",
+            "Carbs": "35g",
+            "Fat": "3g"
+        }
+    },
+    "Vegan Tofu Stir-Fry": {
+        "Price": "250",
+        "ingredients": [
+            "1 block tofu (cubed)",
+            "1 bell pepper (sliced)",
+            "1 zucchini (sliced)",
+            "1 carrot (julienned)",
+            "2 tbsp soy sauce",
+            "1 tbsp sesame oil",
+            "1 tsp ginger (grated)",
+            "2 cloves garlic (minced)",
+            "1 tbsp cornstarch (optional for thickening)"
+        ],
+        "nutrition": {
+            "Calories": "280",
+            "Protein": "14g",
+            "Carbs": "20g",
+            "Fat": "15g"
+        }
+    },
+    "Vegan Avocado Toast with Chickpeas": {
+        "Price": "220",
+        "ingredients": [
+            "1 avocado (mashed)",
+            "½ cup chickpeas (seasoned & mashed)",
+            "1 slice whole-grain bread",
+            "1 tsp lemon juice",
+            "1 tsp olive oil",
+            "Salt, pepper & red pepper flakes to taste"
+        ],
+        "nutrition": {
+            "Calories": "320",
+            "Protein": "10g",
+            "Carbs": "35g",
+            "Fat": "18g"
+        }
+    },
+    "Vegan Buddha Bowl": {
+        "Price": "300",
+        "ingredients": [
+            "½ cup quinoa (cooked)",
+            "½ cup roasted sweet potatoes",
+            "½ cup chickpeas",
+            "½ cup kale (chopped)",
+            "1 tbsp tahini",
+            "1 tsp lemon juice",
+            "Salt & pepper to taste"
+        ],
+        "nutrition": {
+            "Calories": "350",
+            "Protein": "12g",
+            "Carbs": "45g",
+            "Fat": "10g"
+        }
+    },
+    "Vegan Black Bean Tacos": {
+        "Price": "280",
+        "ingredients": [
+            "1 cup black beans (cooked)",
+            "½ tsp cumin",
+            "½ tsp chili powder",
+            "1 tbsp lime juice",
+            "2 corn tortillas",
+            "½ avocado (sliced)",
+            "¼ cup salsa",
+            "¼ cup shredded lettuce"
+        ],
+        "nutrition": {
+            "Calories": "300",
+            "Protein": "12g",
+            "Carbs": "40g",
+            "Fat": "8g"
+        }
+    },
+    "Vegan Peanut Butter Oatmeal": {
+        "Price": "150",
+        "ingredients": [
+            "½ cup oats",
+            "1 cup almond milk",
+            "1 tbsp peanut butter",
+            "½ banana (sliced)",
+            "1 tsp chia seeds",
+            "½ tsp cinnamon"
+        ],
+        "nutrition": {
+            "Calories": "350",
+            "Protein": "10g",
+            "Carbs": "45g",
+            "Fat": "12g"
+        }
+    },
+    "Vegan Chickpea Salad Sandwich": {
+        "Price": "200",
+        "ingredients": [
+            "1 cup chickpeas (mashed)",
+            "1 tbsp vegan mayo",
+            "1 tsp mustard",
+            "1 tbsp lemon juice",
+            "¼ cup celery (chopped)",
+            "¼ cup red onion (chopped)",
+            "2 slices whole wheat bread"
+        ],
+        "nutrition": {
+            "Calories": "400",
+            "Protein": "15g",
+            "Carbs": "50g",
+            "Fat": "10g"
+        }
+    },
+    "Vegan Mushroom Risotto": {
+        "Price": "320",
+        "ingredients": [
+            "1 cup arborio rice",
+            "2 cups vegetable broth",
+            "1 cup mushrooms (sliced)",
+            "1 tbsp olive oil",
+            "1 clove garlic (minced)",
+            "1 tbsp nutritional yeast",
+            "Salt & pepper to taste"
+        ],
+        "nutrition": {
+            "Calories": "320",
+            "Protein": "8g",
+            "Carbs": "55g",
+            "Fat": "6g"
+        }
+    },
+    "Vegan Chocolate Chia Pudding": {
+        "Price": "180",
+        "ingredients": [
+            "¼ cup chia seeds",
+            "1 cup almond milk",
+            "1 tbsp cocoa powder",
+            "1 tbsp maple syrup",
+            "½ tsp vanilla extract"
+        ],
+        "nutrition": {
+            "Calories": "250",
+            "Protein": "6g",
+            "Carbs": "30g",
+            "Fat": "10g"
+        }
+    },
+    "Paneer Bhurji-High-Protein Scrambled Paneer": {
+        "Price": "200",
+        "ingredients": [
+            "100g paneer (cottage cheese)",
+            "1 small onion (chopped)",
+            "1 tomato (chopped)",
+            "1 green chili (chopped)",
+            "½ tsp turmeric",
+            "½ tsp cumin",
+            "½ tsp garam masala",
+            "1 tsp olive oil",
+            "Salt & coriander leaves for garnish"
+        ],
+        "nutrition": {
+            "Calories": "360 kcal"
+        }
+    },
+    "Sprouted Moong Chaat": {
+        "Price": "150",
+        "ingredients": [
+            "1 cup sprouted moong (boiled)",
+            "1 small cucumber (chopped)",
+            "1 tomato (chopped)",
+            "1 green chili (chopped)",
+            "½ tsp chaat masala",
+            "½ tsp cumin powder",
+            "1 tsp lemon juice",
+            "Salt & coriander for garnish"
+        ],
+        "nutrition": {
+            "Calories": "170 kcal"
+        }
+    },
+    "Besan Chilla": {
+        "Price": "180",
+        "ingredients": [
+            "½ cup besan (chickpea flour)",
+            "¼ cup water",
+            "1 small onion (chopped)",
+            "1 small tomato (chopped)",
+            "½ tsp turmeric",
+            "½ tsp cumin",
+            "½ tsp red chili powder",
+            "1 tsp olive oil"
+        ],
+        "nutrition": {
+            "Calories": "270 kcal"
+        }
+    },
+    "High-Protein Oats Upma": {
+        "Price": "220",
+        "ingredients": [
+            "½ cup rolled oats",
+            "1 cup water",
+            "1 small onion (chopped)",
+            "½ cup mixed vegetables (carrots, peas, bell peppers)",
+            "1 tsp olive oil -- 40 kcal",
+            "½ tsp mustard seeds",
+            "½ tsp cumin",
+            "½ tsp turmeric"
+        ],
+        "nutrition": {
+            "Calories": "270 kcal"
+        }
+    },
+    "Soya Chunks Stir-Fry": {
+        "Price": "190",
+        "ingredients": [
+            "1 cup boiled soya chunks",
+            "½ cup bell peppers (chopped)",
+            "1 small onion (chopped)",
+            "½ tsp black pepper",
+            "½ tsp soy sauce",
+            "1 tsp olive oil"
+        ],
+        "nutrition": {
+            "Calories": "230 kcal"
+        }
+    },
+    "Chicken Breast Stir-Fry": {
+        "Price": "250",
+        "ingredients": [
+            "150g chicken breast (chopped)",
+            "½ cup bell peppers (chopped)",
+            "1 small onion (chopped)",
+            "½ tsp black pepper",
+            "½ tsp soy sauce",
+            "1 tsp olive oil"
+        ],
+        "nutrition": {
+            "Calories": "260 kcal"
+        }
+    },
+    "Egg Bhurji-Indian Scrambled Eggs": {
+        "Price": "180",
+        "ingredients": [
+            "2 eggs",
+            "1 small onion (chopped)",
+            "1 tomato (chopped)",
+            "½ tsp turmeric",
+            "½ tsp cumin",
+            "½ tsp garam masala",
+            "1 tsp olive oil"
+        ],
+        "nutrition": {
+            "Calories": "230 kcal"
+        }
+    },
+    "Tandoori Fish-Pan-Seared": {
+        "Price": "300",
+        "ingredients": [
+            "150g fish fillet (salmon/basa)",
+            "½ tsp turmeric",
+            "½ tsp red chili powder",
+            "½ tsp garam masala",
+            "1 tsp olive oil",
+            "1 tsp lemon juice"
+        ],
+        "nutrition": {
+            "Calories": "225 kcal"
+        }
+    },
+    "Chicken & Spinach Omelet": {
+        "Price": "200",
+        "ingredients": [
+            "2 eggs",
+            "50g shredded chicken breast",
+            "½ cup spinach",
+            "½ tsp black pepper",
+            "½ tsp salt",
+            "1 tsp olive oil"
+        ],
+        "nutrition": {
+            "Calories": "245 kcal"
+        }
+    },
+    "Prawn Masala Stir-Fry": {
+        "Price": "280",
+        "ingredients": [
+            "150g prawns",
+            "½ cup bell peppers (chopped)",
+            "1 small onion (chopped)",
+            "½ tsp turmeric",
+            "½ tsp black pepper",
+            "1 tsp olive oil"
+        ],
+        "nutrition": {
+            "Calories": "180 kcal"
+        }
+    },
+    "Banana Pancakes with Chocolate Syrup": {
+        "Price": "250",
+        "ingredients": [
+            "Mashed bananas",
+            "Flour",
+            "Plant-based milk (almond/soy)",
+            "Maple syrup",
+            "Cocoa powder"
+        ],
+        "nutrition": {
+            "Calories": "300-450 kcal",
+            "Carbs": "50-60g",
+            "Protein": "4-8g",
+            "Fat": "5-10g",
+            "Fiber": "Moderate",
+            "Potassium": "High",
+            "Sugar": "Moderate"
+        }
+    },
+    "Chocolate Mousse": {
+        "Price": "300",
+        "ingredients": [
+            "Coconut cream",
+            "Dark chocolate",
+            "Maple syrup",
+            "Avocado (optional)"
+        ],
+        "nutrition": {
+            "Calories": "250-350 kcal",
+            "Carbs": "25-35g",
+            "Protein": "3-6g",
+            "Fat": "15-25g",
+            "Antioxidants": "High",
+            "Sugar": "Moderate"
+        }
+    },
+    "Tiramisu": {
+        "Price": "350",
+        "ingredients": [
+            "Mascarpone cheese",
+            "Coffee-soaked ladyfingers",
+            "Eggs",
+            "Sugar",
+            "Cocoa powder"
+        ],
+        "nutrition": {
+            "Calories": "300-450 kcal",
+            "Carbs": "35-45g",
+            "Protein": "5-8g",
+            "Fat": "20-30g",
+            "Caffeine": "Moderate",
+            "Iron": "Low to moderate"
+        }
+    },
+    "Waffles with Ice Cream & Chocolate Sauce": {
+        "Price": "400",
+        "ingredients": [
+            "Flour",
+            "Eggs",
+            "Sugar",
+            "Butter",
+            "Vanilla ice cream",
+            "Chocolate sauce"
+        ],
+        "nutrition": {
+            "Calories": "500-700 kcal",
+            "Carbs": "60-80g",
+            "Protein": "7-10g",
+            "Fat": "25-40g",
+            "Calcium": "Moderate",
+            "Sugar": "High"
+        }
+    },
+    "Sizzling Brownie with Ice Cream": {
+        "Price": "450",
+        "ingredients": [
+            "½ cup unsalted butter",
+            "1 cup semi-sweet chocolate chips",
+            "¾ cup granulated sugar",
+            "1 teaspoon vanilla extract",
+            "2 large eggs",
+            "½ cup all-purpose flour",
+            "¼ teaspoon salt",
+            "Vanilla ice cream (for serving)",
+            "Chocolate sauce (for drizzling)"
+        ],
+        "nutrition": {
+            "Calories": "5025 kcal",
+            "Carbs": "516.2g",
+            "Protein": "93.1g",
+            "Fat": "250g"
+        }
+    },
+    "Virgin Mojito": {
+        "Price": "150",
+        "ingredients": [
+            "Mint leaves",
+            "Lemon juice",
+            "Sugar syrup",
+            "Soda",
+            "Ice"
+        ],
+        "nutrition": {
+            "Calories": "80-120 kcal",
+            "Carbs": "20-30g",
+            "Protein": "0g",
+            "Fat": "0g",
+            "Vitamin C": "High",
+            "Antioxidants": "Moderate",
+            "Sugar": "Moderate to high"
+        }
+    },
+    "Shirley Temple": {
+        "Price": "180",
+        "ingredients": [
+            "Grenadine syrup",
+            "Lime juice",
+            "Ginger ale",
+            "Ice"
+        ],
+        "nutrition": {
+            "Calories": "150-200 kcal",
+            "Carbs": "35-45g",
+            "Protein": "0g",
+            "Fat": "0g",
+            "Vitamin C": "Moderate",
+            "Antioxidants": "Low",
+            "Sugar": "High"
+        }
+    },
+    "Fruit Punch": {
+        "Price": "200",
+        "ingredients": [
+            "Orange juice",
+            "Pineapple juice",
+            "Mango juice",
+            "Soda",
+            "Grenadine syrup"
+        ],
+        "nutrition": {
+            "Calories": "180-250 kcal",
+            "Carbs": "40-50g",
+            "Protein": "0g",
+            "Fat": "0g",
+            "Vitamin C": "High",
+            "Fiber": "Low to moderate",
+            "Sugar": "High"
+        }
+    },
+    "Blue Lagoon (Non-Alcoholic)": {
+        "Price": "170",
+        "ingredients": [
+            "Blue curacao syrup",
+            "Lemonade",
+            "Soda",
+            "Ice"
+        ],
+        "nutrition": {
+            "Calories": "120-180 kcal",
+            "Carbs": "30-40g",
+            "Protein": "0g",
+            "Fat": "0g",
+            "Vitamin C": "Moderate",
+            "Sugar": "High"
+        }
+    },
+    "Aam Panna Fizz": {
+        "Price": "160",
+        "ingredients": [
+            "Raw mango pulp",
+            "Sugar",
+            "Black salt",
+            "Roasted cumin",
+            "Soda"
+        ],
+        "nutrition": {
+            "Calories": "100-150 kcal",
+            "Carbs": "25-30g",
+            "Protein": "0g",
+            "Fat": "0g",
+            "Vitamin C": "High",
+            "Electrolytes": "High",
+            "Sugar": "Moderate"
+				}
+			}
+		}
+	}
+}

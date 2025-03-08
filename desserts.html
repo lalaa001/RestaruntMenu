@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+        }
+        .header {
+            background-color: #333;
+            color: white;
+            padding: 15px 20px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .cart {
+            background-color: #ffcc00;
+            color: black;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .cart-counter {
+            background: red;
+            color: white;
+            font-size: 14px;
+            padding: 3px 8px;
+            border-radius: 50%;
+            margin-left: 5px;
+        }
+        .menu-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            width: 100%;
+            max-width: 1200px;
+            margin: auto;
+        }
+        .card {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            position: relative;
+            transition: transform 0.2s;
+            text-align: center;
+            padding-bottom: 10px;
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        .card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+        .card .info {
+            padding: 15px;
+        }
+        .button-container {
+            display: none;
+            padding: 10px;
+        }
+        .card:hover .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        .add-to-cart-button, .view-button, .customize-button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .add-to-cart-button:hover {
+            background-color: #218838;
+        }
+        .view-button {
+            background-color: #007bff;
+        }
+        .view-button:hover {
+            background-color: #0056b3;
+        }
+        .customize-button {
+            background-color: #ffc107; 
+        }
+        .customize-button:hover {
+            background-color: #e0a800; 
+        }
+        /* Cart Section */
+        .cart-section {
+            background: white;
+            padding: 20px;
+            margin: 20px;
+            max-width: 400px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            position: fixed; 
+            right: -400px;
+            top: 0;
+            height: 100%;
+            transition: right 0.3s ease; 
+            z-index: 1000; 
+        }
+        .cart-section.open {
+            right: 0; 
+        }
+        .close-cart {
+            background: red;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 18px;
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            border-radius: 50%;
+        }
+        .total-price {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .proceed-payment {
+            background: green;
+            color: white;
+            padding: 10px;
+            width: 90%;
+            margin: 10px 0;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .proceed-payment:hover {
+            background: darkgreen;
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    <span>Menu</span>
+    <button class="cart" onclick="toggleCart()">Cart<span id="cartCounter" class="cart-counter">0</span></button>
+</div>
+
+<div class="menu-section">
+    <div class="card">
+        <img src="Images/image1.jpg" alt="Virgin Mojito">
+        <div class="info">
+            <h2>Banana Pancakes with Chocolate Syrup</h2>
+                <p> Soft, fluffy banana-infused pancakes drizzled with rich chocolate syrup, offering a perfect blend of sweetness and warmth.k</p>
+                <p>Price: ₹250</p>
+        </div>
+        <div class="button-container">
+            <button class="add-to-cart-button" onclick="addToCart('Banana Pancakes with Chocolate Syrup', 170)">Add to Cart</button>
+            <button class="view-button" onclick="viewItem('Banana Pancakes with Chocolate Syrup')">View</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <img src="Images/image1.jpg" alt="Aam Panna Fizz">
+        <div class="info">
+            <h2>Chocolate Mousse</h2>
+            <p>A silky, airy chocolate delight with a smooth, melt-in-the-mouth texture, topped with whipped cream or chocolate shavings.</p>
+            <p>Price: ₹300</p>
+        </div>
+        <div class="button-container">
+            <button class="add-to-cart-button" onclick="addToCart('Chocolate Mousse', 176)">Add to Cart</button>
+            <button class="view-button" onclick="viewItem('Chocolate Mousse')">View</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <img src="Images/image1.jpg" alt="Fruit Punch">
+        <div class="info">
+            <h2>Tiramisu</h2>
+        <p>A classic Italian dessert featuring layers of coffee-soaked ladyfingers, creamy mascarpone, and a dusting of cocoa for a rich and indulgent experience.</p>
+        <p>Price: ₹199</p>
+        </div>
+        <div class="button-container">
+            <button class="add-to-cart-button" onclick="addToCart('Tiramisu', 209)">Add to Cart</button>
+            <button class="view-button" onclick="viewItem('Tiramisu')">View</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <img src="Images/image1.jpg" alt="Shirley Temple">
+        <div class="info">
+            <h2>Waffles with Ice Cream & Chocolate Sauce</h2>
+            <p>A classic mocktail of ginger ale, grenadine syrup, and a cherry garnish, known for its sweet and bubbly charm.</p>
+            <p>Price: ₹197</p>
+        </div>
+        <div class="button-container">
+            <button class="add-to-cart-button" onclick="addToCart('Waffles with Ice Cream & Chocolate Sauce', 197)">Add to Cart</button>
+            <button class="view-button" onclick="viewItem('Waffles with Ice Cream & Chocolate Sauce')">View</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <img src="Images/image1.jpg" alt="Blue Lagoon">
+        <div class="info">
+            <h2>Sizzling Brownie with Ice Cream</h2>
+            <p>A warm, fudgy brownie served on a sizzling plate, topped with a scoop of vanilla ice cream and drizzled with hot chocolate sauce for a dramatic and indulgent treat.</p>
+            <p>Price: ₹210</p>
+        </div>
+        <div class="button-container">
+            <button class="add-to-cart-button" onclick="addToCart('Sizzling Brownie with Ice Cream', 189)">Add to Cart</button>
+            <button class="view-button" onclick="viewItem('Sizzling Brownie with Ice Cream')">View</button>
+        </div>
+    </div>
+</div>
+
+<div id="cartSection" class="cart-section">
+    <button class="close-cart" onclick="toggleCart()">X</button>
+    <h2>Your Cart</h2>
+    <ul id="cartItems" class="cart-items"></ul>
+    <p id="totalPrice" class="total-price">Total Price: ₹0</p>
+    <button class="proceed-payment" onclick="proceedToPayment()">Proceed to Payment</button>
+</div>
+
+
+    <script>
+            function viewItem(name) {
+    window.location.href = `dessertsitemdetail.html?name=${encodeURIComponent(name)}`;
+}
+
+function customize(name) {
+    window.location.href = `customize.html?name=${encodeURIComponent(name)}`;
+}
+
+let cart = JSON.parse(localStorage.getItem('cart')) || {};
+let totalPrice = parseFloat(localStorage.getItem('totalPrice')) || 0;
+
+function addToCart(itemName, price) {
+    if (!cart[itemName]) {
+        cart[itemName] = 0;
+    }
+    cart[itemName]++;
+    totalPrice += price;  
+    updateCart();
+    saveCart();
+}
+
+function removeFromCart(itemName, price) {
+    if (cart[itemName] > 0) {
+        cart[itemName]--;
+        totalPrice -= price; 
+        if (cart[itemName] === 0) {
+            delete cart[itemName]; 
+        }
+    }
+    updateCart();
+    saveCart();
+}
+
+function clearCart() {
+    cart = {};
+    totalPrice = 0;  
+    updateCart();
+    saveCart();
+}
+
+function updateCart() {
+    const cartItemsList = document.getElementById('cartItems');
+    const cartCounter = document.getElementById('cartCounter');
+    const totalPriceElement = document.getElementById('totalPrice');
+
+    cartItemsList.innerHTML = ''; 
+    let totalItems = 0;
+
+    for (let item in cart) {
+        totalItems += cart[item];
+        const li = document.createElement('li');
+        li.classList.add('cart-item');
+        li.innerHTML = `
+            ${item} x${cart[item]}
+            <button onclick="addToCart('${item}', getPrice('${item}'))">+</button>
+            <button onclick="removeFromCart('${item}', getPrice('${item}'))">-</button>
+        `;
+        cartItemsList.appendChild(li);
+    }
+
+    if (cartCounter) {
+        cartCounter.textContent = totalItems;
+    }
+    totalPriceElement.textContent = `Total Price: ₹${totalPrice.toFixed(2)}`;
+}
+
+function getPrice(itemName) {
+    const prices = {
+    "Banana Pancakes with Chocolate Syrup": 250,
+    "Chocolate Mousse": 300,
+    "Tiramisu": 199,
+    "Waffles with Ice Cream & Chocolate Sauce": 197,
+    "Sizzling Brownie with Ice Cream": 210
+    };
+    return prices[itemName] || 0;
+}
+
+function saveCart() {
+    localStorage.setItem('cart', JSON.stringify(cart));
+    localStorage.setItem('totalPrice', totalPrice.toFixed(2)); 
+}
+
+function toggleCart() {
+    const cartSection = document.getElementById('cartSection');
+    cartSection.classList.toggle('open');
+}
+
+function closeCart() {
+    document.getElementById('cartSection').classList.remove('open'); 
+}
+
+function proceedToPayment() {
+    window.location.href = "payment.html"; 
+}
+
+function customizeItem(itemName) {
+    const basePrice = getPrice(itemName);
+    window.location.href = `customize.html?name=${encodeURIComponent(itemName)}&price=${basePrice}`;
+}
+
+window.onload = updateCart;
+    </script>
+</body>
+</html>

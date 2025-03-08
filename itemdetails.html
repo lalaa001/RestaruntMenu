@@ -16,35 +16,84 @@
             padding: 20px;
             text-align: center;
         }
+        .logo-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .logo {
+            width: 150px; 
+            height: auto;
+        }
     </style>
 </head>
 <body>
+    <div class="logo-container">
+        <img src="Images/logo.jpg" alt="Restaurant Logo" class="logo">
+    </div>
     <div class="card" id="itemDetails">Loading...</div>
     <script>
         // Sample data (Replace with fetch if needed)
-        const menuItems = {
-    "Veg Lasagna": {
+    const menuItems = {
+    "Veg Alfredo Pasta": {
         "Price": "200",
         "ingredients": [
-            "Lasagna sheets (6)",
-            "Ricotta cheese (½ cup)",
-            "Mozzarella (½ cup)",
-            "Tomato sauce (1 cup)",
-            "Spinach (1 cup)",
-            "Zucchini (1, sliced)",
+            "Pasta (200g)",
+            "Butter (1 tbsp)",
+            "Garlic (2 cloves, minced)",
+            "Cream (½ cup)",
+            "Milk (½ cup)",
+            "Cheese (¼ cup)",
+            "Black pepper (½ tsp)",
+            "Salt",
+            "Mixed vegetables (½ cup)"
+        ],
+        "nutrition": {
+            "Calories": "450",
+            "Carbs": "55g",
+            "Protein": "12g",
+            "Fat": "18g"
+        }
+    },
+    "Mediterranean Couscous Salad": {
+        "Price": "400",
+        "ingredients": [
+            "Couscous (1 cup)",
+            "Cherry tomatoes (½ cup)",
+            "Cucumber (½ cup, chopped)",
+            "Feta cheese (¼ cup)",
             "Olive oil (1 tbsp)",
-            "Oregano (½ tsp)",
+            "Lemon juice (1 tbsp)",
+            "Salt"
+        ],
+        "nutrition": {
+            "Calories": "260",
+            "Carbs": "35g",
+            "Protein": "8g",
+            "Fat": "10g"
+        }
+    },
+    "Mexican Bean & Rice Bowl": {
+        "Price": "300",
+        "ingredients": [
+            "Cooked rice (1 cup)",
+            "Black beans (½ cup, boiled)",
+            "Corn (¼ cup)",
+            "Bell peppers (½ cup, chopped)",
+            "Salsa (¼ cup)",
+            "Cumin (½ tsp)",
+            "Lime juice",
             "Salt"
         ],
         "nutrition": {
             "Calories": "380",
-            "Carbs": "45g",
-            "Protein": "15g",
-            "Fat": "14g"
+            "Carbs": "55g",
+            "Protein": "14g",
+            "Fat": "6g"
         }
     },
     "Mushroom Risotto": {
-        "Price": "250",
+        "Price": "500",
         "ingredients": [
             "Arborio rice (1 cup)",
             "Mushrooms (1 cup, sliced)",
@@ -64,7 +113,7 @@
         }
     },
     "Cheesy Garlic Bread with Veggies": {
-        "Price": "300",
+        "Price": "450",
         "ingredients": [
             "Baguette (½)",
             "Butter (2 tbsp)",
@@ -82,7 +131,7 @@
         }
     },
     "Vegetable Khichdi": {
-        "Price": "350",
+        "Price": "800",
         "ingredients": [
             "Rice (1 cup)",
             "Moong dal (½ cup)",
@@ -100,7 +149,7 @@
         }
     },
     "Paneer Butter Masala": {
-        "Price": "400",
+        "Price": "850",
         "ingredients": [
             "Paneer (200g)",
             "Tomato puree (1 cup)",
@@ -119,7 +168,7 @@
         }
     },
     "Chana Masala": {
-        "Price": "450",
+        "Price": "900",
         "ingredients": [
             "Chickpeas (1 cup, boiled)",
             "Onion (1, chopped)",
@@ -137,7 +186,7 @@
         }
     },
     "Grilled Veggie Wrap": {
-        "Price": "500",
+        "Price": "550",
         "ingredients": [
             "Whole wheat tortilla (1)",
             "Bell peppers (½ cup, sliced)",
@@ -156,7 +205,7 @@
         }
     },
     "Spinach & Ricotta Stuffed Peppers": {
-        "Price": "550",
+        "Price": "600",
         "ingredients": [
             "Bell peppers (2, halved)",
             "Ricotta cheese (½ cup)",
@@ -169,13 +218,13 @@
         ],
         "nutrition": {
             "Calories": "260",
-            "Carbs ": "20g",
+            "Carbs": "20g",
             "Protein": "10g",
             "Fat": "12g"
         }
     },
     "Stir-Fried Tofu & Vegetables": {
-        "Price": "600",
+        "Price": "650",
         "ingredients": [
             "Firm tofu (200g, cubed)",
             "Bell peppers (1 cup, sliced)",
@@ -194,7 +243,7 @@
         }
     },
     "Veggie Burger": {
-        "Price": "650",
+        "Price": "700",
         "ingredients": [
             "Burger bun (1)",
             "Chickpeas (½ cup, mashed)",
@@ -213,7 +262,7 @@
         }
     },
     "Pesto Pasta": {
-        "Price": "700",
+        "Price": "750",
         "ingredients": [
             "Pasta (200g)",
             "Basil leaves (1 cup)",
@@ -231,7 +280,7 @@
         }
     },
     "Mediterranean Couscous Salad": {
-        "Price": "750",
+        "Price": "400",
         "ingredients": [
             "Couscous (1 cup)",
             "Cherry tomatoes (½ cup)",
@@ -249,7 +298,7 @@
         }
     },
     "Creamy Broccoli Soup": {
-        "Price": "800",
+        "Price": "350",
         "ingredients": [
             "Broccoli (2 cups)",
             "Vegetable broth (2 cups)",
@@ -267,7 +316,7 @@
         }
     },
     "Aloo Matar": {
-        "Price": "850",
+        "Price": "950",
         "ingredients": [
             "Potatoes (2, diced)",
             "Green peas (1 cup)",
@@ -286,7 +335,7 @@
         }
     },
     "Dal Tadka": {
-        "Price": "900",
+        "Price": "1000",
         "ingredients": [
             "Toor dal (¾ cup)",
             "Onion (1, chopped)",
@@ -305,7 +354,7 @@
         }
     },
     "Methi Thepla": {
-        "Price": "950",
+        "Price": "1050",
         "ingredients": [
             "Whole wheat flour (1 cup)",
             "Fresh fenugreek leaves (½ cup)",
@@ -323,14 +372,14 @@
         }
     },
     "Baingan Bharta": {
-        "Price": "1000",
+        "Price": "1100",
         "ingredients": [
             "Eggplant (1, roasted and mashed)",
             "Onion (1, chopped)",
             "Tomato (1, chopped)",
             "Garlic (4 cloves)",
             "Cumin (½ tsp)",
- "Garam masala (½ tsp)",
+            "Garam masala (½ tsp)",
             "Oil",
             "Salt"
         ],
@@ -342,7 +391,7 @@
         }
     },
     "Rajma Masala": {
-        "Price": "1050",
+        "Price": "1200",
         "ingredients": [
             "Kidney beans (1 cup, boiled)",
             "Onion (1, chopped)",
@@ -360,7 +409,7 @@
         }
     },
     "Capsicum Besan Sabzi": {
-        "Price": "1100",
+        "Price": "1150",
         "ingredients": [
             "Capsicum (2, diced)",
             "Gram flour (¼ cup)",
@@ -378,7 +427,7 @@
         }
     },
     "Vegetable Pulao": {
-        "Price": "1150",
+        "Price": "1250",
         "ingredients": [
             "Basmati rice (1 cup)",
             "Mixed vegetables (1 cup)",
@@ -396,7 +445,7 @@
         }
     },
     "Kadhi Pakora": {
-        "Price": "1200",
+        "Price": "1300",
         "ingredients": [
             "Besan (½ cup)",
             "Yogurt (1 cup)",
@@ -415,7 +464,7 @@
         }
     },
     "Mushroom Masala": {
-        "Price": "1250",
+        "Price": "1350",
         "ingredients": [
             "Mushrooms (200g, sliced)",
             "Onion (1, chopped)",
@@ -433,7 +482,183 @@
             "Fat": "10g"
         }
     },
-};
+    "Garlic Butter Chicken Thighs": {
+        "Price": "200",
+        "ingredients": [
+            "2 bone-in, skin-on chicken thighs",
+            "2 tbsp butter",
+            "3 garlic cloves (minced)",
+            "1 tsp black pepper",
+            "Salt to taste"
+        ],
+        "nutrition": {
+            "Calories": 700,
+            "Protein": 50,
+            "Fat": 40,
+            "Carbs": 5
+        }
+    },
+    "Spicy Chicken Drumsticks": {
+        "Price": "250",
+        "ingredients": [
+            "3 chicken drumsticks",
+            "1 tbsp olive oil",
+            "1 tsp red chili powder",
+            "½ tsp black pepper",
+            "½ tsp paprika",
+            "Salt to taste"
+        ],
+        "nutrition": {
+            "Calories": 750,
+            "Protein": 55,
+            "Fat": 35,
+            "Carbs": 10
+        }
+    },
+    "Pan-Seared Chicken Breast with Veggies": {
+        "Price": "300",
+        "ingredients": [
+            "1 large chicken breast",
+            "1 tbsp olive oil",
+            "1 tsp black pepper",
+            "1 cup mixed vegetables (carrots, bell peppers, beans)",
+            "Salt to taste"
+        ],
+        "nutrition": {
+            "Calories": 600,
+            "Protein": 55,
+            "Fat": 20,
+            "Carbs": 15
+        }
+    },
+    "Creamy Garlic Chicken with Rice": {
+        "Price": "350",
+        "ingredients": [
+            "200g boneless chicken (sliced)",
+            "1 tbsp butter",
+            "4 garlic cloves (minced)",
+            "½ cup heavy cream",
+            "1 tsp black pepper",
+            "2 cups cooked rice",
+            "Salt to taste"
+        ],
+        "nutrition": {
+            "Calories": 750,
+            "Protein": 50,
+            "Fat": 35,
+            "Carbs": 80
+        }
+    },
+    "Creamy Coconut Chicken Curry with Rice": {
+        "Price": "400",
+        "ingredients": [
+            "200g boneless chicken (cub cubed)",
+            "1 cup coconut milk",
+            "1 tbsp oil",
+            "1 onion (chopped)",
+            "1 tsp red chili powder",
+            "2 cups cooked rice",
+            "Salt to taste"
+        ],
+        "nutrition": {
+            "Calories": 780,
+            "Protein": 50,
+            "Fat": 30,
+            "Carbs": 85
+        }
+    },
+    "Chicken and Egg Fried Rice": {
+        "Price": "350",
+        "ingredients": [
+            "2 cups cooked rice",
+            "200g boneless chicken (shredded)",
+            "2 eggs (scrambled)",
+            "1 onion (chopped)",
+            "1 tbsp soy sauce",
+            "1 tbsp oil",
+            "Salt to taste"
+        ],
+        "nutrition": {
+            "Calories": 800,
+            "Protein": 50,
+            "Fat": 25,
+            "Carbs": 90
+        }
+    },
+    "Spicy Garlic Chicken Wings": {
+        "Price": "380",
+        "ingredients": [
+            "6 chicken wings",
+            "2 tbsp butter",
+            "1 tsp red chili powder",
+            "1 tbsp soy sauce",
+            "4 garlic cloves (minced)",
+            "Salt to taste"
+        ],
+        "nutrition": {
+            "Calories": 850,
+            "Protein": 55,
+            "Fat": 45,
+            "Carbs": 60
+        }
+    },
+    "Chicken and Mushroom Stir-Fry with Rice": {
+        "Price": "360",
+        "ingredients": [
+            "200g boneless chicken (sliced)",
+            "½ cup mushrooms (sliced)",
+            "2 tbsp oil",
+            "1 tbsp soy sauce",
+            "1 tsp black pepper",
+            "2 cups cooked rice",
+            "Salt to taste"
+        ],
+        "nutrition": {
+            "Calories": 750,
+            "Protein": 48,
+            "Fat": 25,
+            "Carbs": 80
+        }
+    },
+    "Chicken and Egg Noodles Stir-Fry": {
+        "Price": "370",
+        "ingredients": [
+            "200g boneless chicken (sliced)",
+            "1 packet noodles (boiled)",
+            "2 eggs (scrambled)",
+            "1 onion (sliced)",
+            "½ cup capsicum (sliced)",
+            "2 tbsp soy sauce",
+            "1 tbsp vinegar",
+            "1 tsp black pepper",
+            "1 tbsp oil",
+            "Salt to taste"
+        ],
+        "nutrition": {
+            "Calories": 750,
+            "Protein": 45,
+            "Fat": 22,
+            "Carbs": 90
+        }
+    },
+    "Chicken and Egg Paratha": {
+        "Price": "400",
+        "ingredients": [
+            "2 cups wheat flour",
+            "200g boneless chicken (shredded)",
+            "2 eggs",
+            "1 tsp black pepper",
+            "2 tbsp butter",
+            "Salt to taste"
+        ],
+        "nutrition": {
+            "Calories": 850,
+            "Protein": 50,
+            "Fat": 35,
+            "Carbs": 90
+        }
+    }
+}
 async function loadItemDetails() {
             try {
                 // Get item name from URL

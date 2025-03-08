@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+        }
+        .header {
+            background-color: #333;
+            color: white;
+            padding: 15px 20px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .cart {
+            background-color: #ffcc00;
+            color: black;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .cart-counter {
+            background: red;
+            color: white;
+            font-size: 14px;
+            padding: 3px 8px;
+            border-radius: 50%;
+            margin-left: 5px;
+        }
+        .menu-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            width: 100%;
+            max-width: 1200px;
+            margin: auto;
+        }
+        .card {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            position: relative;
+            transition: transform 0.2s;
+            text-align: center;
+            padding-bottom: 10px;
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        .card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+        .card .info {
+            padding: 15px;
+        }
+        .button-container {
+            display: none;
+            padding: 10px;
+        }
+        .card:hover .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        .add-to-cart-button, .view-button, .customize-button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .add-to-cart-button:hover {
+            background-color: #218838;
+        }
+        .view-button {
+            background-color: #007bff;
+        }
+        .view-button:hover {
+            background-color: #0056b3;
+        }
+        .customize-button {
+            background-color: #ffc107; 
+        }
+        .customize-button:hover {
+            background-color: #e0a800; 
+        }
+        /* Cart Section */
+        .cart-section {
+            background: white;
+            padding: 20px;
+            margin: 20px;
+            max-width: 400px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            position: fixed; 
+            right: -400px;
+            top: 0;
+            height: 100%;
+            transition: right 0.3s ease; 
+            z-index: 1000; 
+        }
+        .cart-section.open {
+            right: 0; 
+        }
+        .close-cart {
+            background: red;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 18px;
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            border-radius: 50%;
+        }
+        .total-price {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .proceed-payment {
+            background: green;
+            color: white;
+            padding: 10px;
+            width: 90%;
+            margin: 10px 0;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .proceed-payment:hover {
+            background: darkgreen;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <span>Menu</span>
+        <button class="cart" onclick="toggleCart()">Cart<span id="cartCounter" class="cart-counter">0</span></button>
+    </div>
+
+    <div class="menu-section">
+        <div class="card">
+            <img src="Images/image41.jpg" alt="Virgin Mojito">
+            <div class="info">
+                <h2>Virgin Mojito</h2>
+                <p>A refreshing blend of mint leaves, lime juice, sugar, and soda, served over ice for a crisp, cooling taste.</p>
+                <p>Price: ₹170</p>
+            </div>
+            <div class="button-container">
+                <button class="add-to-cart-button" onclick="addToCart('Virgin Mojito', 170)">Add to Cart</button>
+                <button class="view-button" onclick="viewItem('Virgin Mojito')">View</button>
+            </div>
+        </div>
+    
+        <div class="card">
+            <img src="Images/image42.jpg" alt="Blue Lagoon">
+            <div class="info">
+                <h2>Blue Lagoon</h2>
+                <p>A vibrant blue mocktail made with lemonade and blue curaçao syrup, offering a sweet and citrusy flavor.</p>
+                <p>Price: ₹189</p>
+            </div>
+            <div class="button-container">
+                <button class="add-to-cart-button" onclick="addToCart('Blue Lagoon', 189)">Add to Cart</button>
+                <button class="view-button" onclick="viewItem('Blue Lagoon')">View</button>
+            </div>
+        </div>
+    
+        <div class="card">
+            <img src="Images/image43.jpg" alt="Aam Panna Fizz">
+            <div class="info">
+                <h2>Aam Panna Fizz</h2>
+                <p>A tangy summer cooler made with raw mango pulp, sugar, black salt, and soda, delivering a perfect balance of sweet and sour.</p>
+                <p>Price: ₹176</p>
+            </div>
+            <div class="button-container">
+                <button class="add-to-cart-button" onclick="addToCart('Aam Panna Fizz', 176)">Add to Cart</button>
+                <button class="view-button" onclick="viewItem('Aam Panna Fizz')">View</button>
+            </div>
+        </div>
+    
+        <div class="card">
+            <img src="Images/image44.jpg" alt="Fruit Punch">
+            <div class="info">
+                <h2>Fruit Punch</h2>
+                <p>A tropical medley of mixed fruit juices like orange, pineapple, and cranberry, finished with a splash of soda for a fizzy twist.</p>
+                <p>Price: ₹209</p>
+            </div>
+            <div class="button-container">
+                <button class="add-to-cart-button" onclick="addToCart('Fruit Punch', 209)">Add to Cart</button>
+                <button class="view-button" onclick="viewItem('Fruit Punch')">View</button>
+            </div>
+        </div>
+    
+        <div class="card">
+            <img src="Images/image45.jpg" alt="Shirley Temple">
+            <div class="info">
+                <h2>Shirley Temple</h2>
+                <p>A classic mocktail of ginger ale, grenadine syrup, and a cherry garnish, known for its sweet and bubbly charm.</p>
+                <p>Price: ₹197</p>
+            </div>
+            <div class="button-container">
+                <button class="add-to-cart-button" onclick="addToCart('Shirley Temple', 197)">Add to Cart</button>
+                <button class="view-button" onclick="viewItem('Shirley Temple')">View</button>
+            </div>
+        </div>
+    </div>
+    
+    <div id="cartSection" class="cart-section">
+        <button class="close-cart" onclick="toggleCart()">X</button>
+        <h2>Your Cart</h2>
+        <ul id="cartItems" class="cart-items"></ul>
+        <p id="totalPrice" class="total-price">Total Price: ₹0</p>
+        <button class="proceed-payment" onclick="proceedToPayment()">Proceed to Payment</button>
+    </div>
+
+    <script>
+        function viewItem(name) {
+    window.location.href = `mocktailitemdetail.html?name=${encodeURIComponent(name)}`;
+}
+
+function customize(name) {
+    window.location.href = `customize.html?name=${encodeURIComponent(name)}`;
+}
+
+let cart = JSON.parse(localStorage.getItem('cart')) || {};
+let totalPrice = parseFloat(localStorage.getItem('totalPrice')) || 0;
+
+function addToCart(itemName, price) {
+    if (!cart[itemName]) {
+        cart[itemName] = 0;
+    }
+    cart[itemName]++;
+    totalPrice += price;  
+    updateCart();
+    saveCart();
+}
+
+function removeFromCart(itemName, price) {
+    if (cart[itemName] > 0) {
+        cart[itemName]--;
+        totalPrice -= price; 
+        if (cart[itemName] === 0) {
+            delete cart[itemName]; 
+        }
+    }
+    updateCart();
+    saveCart();
+}
+
+function clearCart() {
+    cart = {};
+    totalPrice = 0;  
+    updateCart();
+    saveCart();
+}
+
+function updateCart() {
+    const cartItemsList = document.getElementById('cartItems');
+    const cartCounter = document.getElementById('cartCounter');
+    const totalPriceElement = document.getElementById('totalPrice');
+
+    cartItemsList.innerHTML = ''; 
+    let totalItems = 0;
+
+    for (let item in cart) {
+        totalItems += cart[item];
+        const li = document.createElement('li');
+        li.classList.add('cart-item');
+        li.innerHTML = `
+            ${item} x${cart[item]}
+            <button onclick="addToCart('${item}', getPrice('${item}'))">+</button>
+            <button onclick="removeFromCart('${item}', getPrice('${item}'))">-</button>
+        `;
+        cartItemsList.appendChild(li);
+    }
+
+    if (cartCounter) {
+        cartCounter.textContent = totalItems;
+    }
+    totalPriceElement.textContent = `Total Price: ₹${totalPrice.toFixed(2)}`;
+}
+
+function getPrice(itemName) {
+    const prices = {
+        'Blue Lagoon': 189,
+        'Aam Panna Fizz': 176,
+        'Fruit Punch': 209,
+        'Shirley Temple': 197,
+        'Virgin Mojito': 170,
+    };
+    return prices[itemName] || 0;
+}
+
+function saveCart() {
+    localStorage.setItem('cart', JSON.stringify(cart));
+    localStorage.setItem('totalPrice', totalPrice.toFixed(2)); 
+}
+
+function toggleCart() {
+    const cartSection = document.getElementById('cartSection');
+    cartSection.classList.toggle('open');
+}
+
+function closeCart() {
+    document.getElementById('cartSection').classList.remove('open'); 
+}
+
+function proceedToPayment() {
+    window.location.href = "payment.html"; 
+}
+
+function customizeItem(itemName) {
+    const basePrice = getPrice(itemName);
+    window.location.href = `customize.html?name=${encodeURIComponent(itemName)}&price=${basePrice}`;
+}
+
+window.onload = updateCart;
+    </script>
+</body>
+</html>

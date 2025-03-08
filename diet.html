@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+        }
+        .header {
+            background-color: #333;
+            color: white;
+            padding: 15px 20px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .cart {
+            background-color: #ffcc00;
+            color: black;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .cart-counter {
+            background: red;
+            color: white;
+            font-size: 14px;
+            padding: 3px 8px;
+            border-radius: 50%;
+            margin-left: 5px;
+        }
+        .menu-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            width: 100%;
+            max-width: 1200px;
+            margin: auto;
+        }
+        .card {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            position: relative;
+            transition: transform 0.2s;
+            text-align: center;
+            padding-bottom: 10px;
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        .card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+        .card .info {
+            padding: 15px;
+        }
+        .button-container {
+            display: none;
+            padding: 10px;
+        }
+        .card:hover .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        .add-to-cart-button, .view-button, .customize-button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .add-to-cart-button:hover {
+            background-color: #218838;
+        }
+        .view-button {
+            background-color: #007bff;
+        }
+        .view-button:hover {
+            background-color: #0056b3;
+        }
+        .customize-button {
+            background-color: #ffc107; 
+        }
+        .customize-button:hover {
+            background-color: #e0a800; 
+        }
+        /* Cart Section */
+        .cart-section {
+            background: white;
+            padding: 20px;
+            margin: 20px;
+            max-width: 400px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            position: fixed; 
+            right: -400px;
+            top: 0;
+            height: 100%;
+            transition: right 0.3s ease; 
+            z-index: 1000; 
+        }
+        .cart-section.open {
+            right: 0; 
+        }
+        .close-cart {
+            background: red;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 18px;
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            border-radius: 50%;
+        }
+        .cart-section h2 {
+            margin-bottom: 10px;
+        }
+        .cart-items {
+            list-style: none;
+            padding: 0;
+        }
+        .cart-item {
+            background: #ffcc00;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .cart-buttons button {
+            background: red;
+            color: white;
+            border : none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 3px;
+            margin-left: 5px;
+        }
+        .cart-buttons button:hover {
+            background: darkred;
+        }
+        .clear-cart, .proceed-payment {
+            background: black;
+            color: white;
+            padding: 10px;
+            width: 90%;
+            margin: 10px 0;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .clear-cart:hover {
+            background: darkgray;
+        }
+        .total-price {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .clear-cart:hover {
+            background: darkgray;
+        }
+        .proceed-payment {
+            background: green;
+        }
+        .proceed-payment:hover {
+            background: darkgreen;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <span>Menu</span>
+        <button class="cart" onclick="toggleCart()">Cart<span id="cartCounter" class="cart-counter">0</span></button>
+    </div>
+
+    <div class="menu-section">
+        <div class="card">
+            <img src="Images/image1.jpg" alt="Paneer Bhurji-High-Protein Scrambled Paneer">
+            <div class="info">
+                <h2>Paneer Bhurji (High-Protein Scrambled Paneer)</h2>
+                <p>: A protein-rich dish made with crumbled paneer, tomatoes, and spices.</p>
+                <p>Price: ₹200</p>
+            </div>
+            <div class="button-container">
+                <button class="add-to-cart-button" onclick="addToCart('Paneer Bhurji-High-Protein Scrambled Paneer', 200)">Add to Cart</button>
+                <button class="view-button" onclick="viewItem('Paneer Bhurji-High-Protein Scrambled Paneer')">View</button>
+                <button class="customize-button" onclick="customizeItem('Paneer Bhurji-High-Protein Scrambled Paneer')">Customize</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="Images/image2.jpg" alt="Sprouted Moong Chaat">
+            <div class="info">
+                <h2>Sprouted Moong Chaat</h2>
+                <p>A fiber and protein-rich chaat made from sprouted moong beans, fresh veggies, and lemon juice.</p>
+                <p>Price: ₹250</p>
+            </div>
+            <div class="button-container">
+                <button class="add-to-cart-button" onclick="addToCart('Sprouted Moong Chaat', 250)">Add to Cart</button>
+                <button class="view-button" onclick="viewItem('Sprouted Moong Chaat')">View</button>
+                <button class="customize-button" onclick="customizeItem('Sprouted Moong Chaat')">Customize</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="Images/image3.jpg" alt="Besan Chilla">
+            <div class="info">
+                <h2>Besan Chilla</h2>
+                <p>A high-protein, low-carb savory pancake.</p>
+                <p>Price: ₹300</p>
+            </div>
+            <div class="button-container">
+                <button class="add-to-cart-button" onclick="addToCart('Besan Chilla', 300)">Add to Cart</button>
+                <button class="view-button" onclick="viewItem('Besan Chilla')">View</button>
+                <button class="customize-button" onclick="customizeItem('Besan Chilla')">Customize</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="Images/image4.jpg" alt="High-Protein Oats Upma">
+            <div class="info">
+                <h2>High-Protein Oats Upma</h2>
+                <p>A fiber-rich, protein-packed Indian twist to regular oats with vegetables and spices.</p>
+                <p>Price: ₹350</p>
+            </div>
+            <div class="button-container">
+                <button class="add-to-cart-button" onclick="addToCart('High-Protein Oats Upma', 350)">Add to Cart</button>
+                <button class="view-button" onclick="viewItem('High-Protein Oats Upma')">View</button>
+                <button class="customize-button" onclick="customizeItem('High-Protein Oats Upma')">Customize</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="Images/image5.jpg" alt="Soya Chunks Stir-Fry">
+            <div class="info">
+                <h2>Soya Chunks Stir-Fry</h2>
+                <p>A high-protein stir-fry with soya chunks and veggies.</p>
+                <p>Price: ₹400</p>
+            </div>
+            <div class="button-container">
+                <button class="add-to-cart-button" onclick="addToCart('Soya Chunks Stir-Fry', 400)">Add to Cart</button>
+                <button class="view-button" onclick="viewItem('Soya Chunks Stir-Fry')">View</button>
+                <button class="customize-button" onclick="customizeItem('Soya Chunks Stir-Fry')">Customize</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="Images/image6.jpg" alt="Chicken Breast Stir-Fry">
+            <div class="info">
+                <h2>Chicken Breast Stir-Fry</h2>
+                <p>A lean protein-packed chicken stir-fry with veggies.</p>
+                <p>Price: ₹450</p>
+            </div>
+            <div class="button-container">
+                <button class="add-to-cart-button" onclick="addToCart('Chicken Breast Stir-Fry', 450)">Add to Cart</button>
+                <button class="view-button" onclick="viewItem('Chicken Breast Stir-Fry')">View</button>
+                <button class="customize-button" onclick="customizeItem('Chicken Breast Stir-Fry')">Customize</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="Images/image7.jpg" alt="Egg Bhurji-Indian Scrambled Eggs">
+            <div class="info">
+                <h2>Egg Bhurji-Indian Scrambled Eggs</h2>
+                <p>A high-protein, quick, and easy egg dish.</p>
+                <p>Price: ₹500</p>
+            </div>
+            <div class="button-container">
+                <button class="add-to-cart-button" onclick="addToCart('Egg Bhurji-Indian Scrambled Eggs', 500)">Add to Cart</button>
+                <button class="view-button" onclick="viewItem('Egg Bhurji-Indian Scrambled Eggs')">View</button>
+                <button class="customize-button" onclick="customizeItem('Egg Bhurji-Indian Scrambled Eggs')">Customize</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="Images/image8.jpg" alt="Tandoori Fish-Pan-Seared">
+            <div class="info">
+                <h2>Tandoori Fish-Pan-Seared</h2>
+                <p>: A spiced, high-protein fish fillet cooked on a pan.</p>
+                <p>Price: ₹550</p>
+            </div>
+            <div class="button-container">
+                <button class="add-to-cart-button" onclick="addToCart('Tandoori Fish-Pan-Seared', 550)">Add to Cart</button>
+                <button class="view-button" onclick="viewItem('Tandoori Fish-Pan-Seared')">View</button>
+                <button class="customize-button" onclick="customizeItem('Tandoori Fish-Pan-Seared')">Customize</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="Images/image9.jpg" alt="Chicken & Spinach Omelet">
+            <div class="info">
+                <h2>Chicken & Spinach Omelet</h2>
+                <p>A high-protein omelet with chicken and spinach.</p>
+                <p>Price: ₹600</p>
+            </div>
+            <div class="button-container">
+                <button class="add-to-cart-button" onclick="addToCart('Chicken & Spinach Omelet', 600)">Add to Cart</button>
+                <button class="view-button" onclick="viewItem('Chicken & Spinach Omelet')">View</button>
+                <button class="customize-button" onclick="customizeItem('Chicken & Spinach Omelet')">Customize</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="Images/image10.jpg" alt="Prawn Masala Stir-Fry">
+            <div class="info">
+                <h2>Prawn Masala Stir-Fry</h2>
+                <p>A high-protein, low-fat dish with flavorful spices.</p>
+                <p>Price: ₹650</p>
+            </div>
+            <div class="button-container">
+                <button class="add-to-cart-button" onclick="addToCart('Prawn Masala Stir-Fry', 650)">Add to Cart</button>
+                <button class="view-button" onclick="viewItem('Prawn Masala Stir-Fry')">View</button>
+                <button class="customize-button" onclick="customizeItem('Prawn Masala Stir-Fry')">Customize</button>
+            </div>
+        </div>
+    
+    <div id="cartSection" class="cart-section">
+        <button class="close-cart" onclick="toggleCart()">X</button>
+        <h2>Your Cart</h2>
+        <ul id="cartItems" class="cart-items"></ul>
+        <p id="totalPrice" class="total-price">Total Price: ₹0</p>
+        <button class="clear-cart" onclick="clearCart()">Clear Cart</button>
+        <button class="proceed-payment" onclick="proceedToPayment()">Proceed to Payment</button>
+    </div>
+
+    <script>
+        
+        function viewItem(name) {
+    window.location.href = `dietitemdetail.html?name=${encodeURIComponent(name)}`;
+}
+
+function customize(name) {
+    window.location.href = `customize.html?name=${encodeURIComponent(name)}`;
+}
+
+let cart = JSON.parse(localStorage.getItem('cart')) || {};
+let totalPrice = parseFloat(localStorage.getItem('totalPrice')) || 0;
+
+function addToCart(itemName, price) {
+    if (!cart[itemName]) {
+        cart[itemName] = 0;
+    }
+    cart[itemName]++;
+    totalPrice += price;  
+    updateCart();
+    saveCart();
+}
+
+function removeFromCart(itemName, price) {
+    if (cart[itemName] > 0) {
+        cart[itemName]--;
+        totalPrice -= price; 
+        if (cart[itemName] === 0) {
+            delete cart[itemName]; 
+        }
+    }
+    updateCart();
+    saveCart();
+}
+
+function clearCart() {
+    cart = {};
+    totalPrice = 0;  
+    updateCart();
+    saveCart();
+}
+
+function updateCart() {
+    const cartItemsList = document.getElementById('cartItems');
+    const cartCounter = document.getElementById('cartCounter');
+    const totalPriceElement = document.getElementById('totalPrice');
+
+    cartItemsList.innerHTML = ''; 
+    let totalItems = 0;
+
+    for (let item in cart) {
+        totalItems += cart[item];
+        const li = document.createElement('li');
+        li.classList.add('cart-item');
+        li.innerHTML = `
+            ${item} x${cart[item]}
+            <button onclick="addToCart('${item}', getPrice('${item}'))">+</button>
+            <button onclick="removeFromCart('${item}', getPrice('${item}'))">-</button>
+        `;
+        cartItemsList.appendChild(li);
+    }
+
+    if (cartCounter) {
+        cartCounter.textContent = totalItems;
+    }
+    totalPriceElement.textContent = `Total Price: ₹${totalPrice.toFixed(2)}`;
+}
+
+function getPrice(itemName) {
+    const prices = {
+        'Paneer Bhurji (High-Protein Scrambled Paneer)': 200,
+        'Sprouted Moong Chaat': 250,
+        'High-Protein Oats Upma': 350,
+        'Soya Chunks Stir-Fry': 400,
+        'Chicken Breast Stir-Fry': 450,
+        'Egg Bhurji-Indian Scrambled Eggs': 500,
+        'Tandoori Fish-Pan-Seared': 550,
+        'Chicken & Spinach Omelet': 600,
+        'Prawn Masala Stir-Fry': 650,
+        'Besan Chilla': 300,
+    };
+    return prices[itemName] || 0;
+}
+
+function saveCart() {
+    localStorage.setItem('cart', JSON.stringify(cart));
+    localStorage.setItem('totalPrice', totalPrice.toFixed(2)); 
+}
+
+function toggleCart() {
+    const cartSection = document.getElementById('cartSection');
+    cartSection.classList.toggle('open');
+}
+
+function closeCart() {
+    document.getElementById('cartSection').classList.remove('open'); 
+}
+
+function proceedToPayment() {
+    window.location.href = "payment.html"; 
+}
+
+function customizeItem(itemName) {
+    const basePrice = getPrice(itemName);
+    window.location.href = `customize.html?name=${encodeURIComponent(itemName)}&price=${basePrice}`;
+}
+
+window.onload = updateCart;
+    </script>
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Item Details</title>
+    <style>
+        .card {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            text-align: center;
+        }
+        .logo-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .logo {
+            width: 150px; 
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="logo-container">
+        <img src="Images/logo.jpg" alt="Restaurant Logo" class="logo">
+    </div>
+    <div class="card" id="itemDetails">Loading...</div>
+    <script>
+        const menuItems = {
+    "Virgin Mojito": {
+        "Price": "150",
+        "ingredients": [
+            "Mint leaves",
+            "Lemon juice",
+            "Sugar syrup",
+            "Soda",
+            "Ice"
+        ],
+        "nutrition": {
+            "Calories": "80-120 kcal",
+            "Carbs": "20-30g",
+            "Protein": "0g",
+            "Fat": "0g",
+            "Vitamin C": "High",
+            "Antioxidants": "Moderate",
+            "Sugar": "Moderate to high"
+        }
+    },
+    "Shirley Temple": {
+        "Price": "180",
+        "ingredients": [
+            "Grenadine syrup",
+            "Lime juice",
+            "Ginger ale",
+            "Ice"
+        ],
+        "nutrition": {
+            "Calories": "150-200 kcal",
+            "Carbs": "35-45g",
+            "Protein": "0g",
+            "Fat": "0g",
+            "Vitamin C": "Moderate",
+            "Antioxidants": "Low",
+            "Sugar": "High"
+        }
+    },
+    "Fruit Punch": {
+        "Price": "200",
+        "ingredients": [
+            "Orange juice",
+            "Pineapple juice",
+            "Mango juice",
+            "Soda",
+            "Grenadine syrup"
+        ],
+        "nutrition": {
+            "Calories": "180-250 kcal",
+            "Carbs": "40-50g",
+            "Protein": "0g",
+            "Fat": "0g",
+            "Vitamin C": "High",
+            "Fiber": "Low to moderate",
+            "Sugar": "High"
+        }
+    },
+    "Blue Lagoon (Non-Alcoholic)": {
+        "Price": "170",
+        "ingredients": [
+            "Blue curacao syrup",
+            "Lemonade",
+            "Soda",
+            "Ice"
+        ],
+        "nutrition": {
+            "Calories": "120-180 kcal",
+            "Carbs": "30-40g",
+            "Protein": "0g",
+            "Fat": "0g",
+            "Vitamin C": "Moderate",
+            "Sugar": "High"
+        }
+    },
+    "Aam Panna Fizz": {
+        "Price": "160",
+        "ingredients": [
+            "Raw mango pulp",
+            "Sugar",
+            "Black salt",
+            "Roasted cumin",
+            "Soda"
+        ],
+        "nutrition": {
+            "Calories": "100-150 kcal",
+            "Carbs": "25-30g",
+            "Protein": "0g",
+            "Fat": "0g",
+            "Vitamin C": "High",
+            "Electrolytes": "High",
+            "Sugar": "Moderate"
+        }
+    }
+}
+async function loadItemDetails() {
+            try {
+                // Get item name from URL
+                const urlParams = new URLSearchParams(window.location.search);
+                const itemName = decodeURIComponent(urlParams.get('name') || "").trim();
+
+                console.log("Requested Item:", itemName); // Debugging
+
+                // Simulating API fetch (Replace with real API if needed)
+                await new Promise(resolve => setTimeout(resolve, 500)); // Simulating delay
+
+                // Check if item exists
+                const item = menuItems[itemName];
+
+                if (item) {
+                    document.getElementById('itemDetails').innerHTML = `
+                        <h2>${itemName}</h2>
+                        <h3>Ingredients:</h3>
+                        <ul>${item.ingredients.map(ing => `<li>${ing}</li>`).join('')}</ul>
+                        <h3>Nutrition:</h3>
+                        <p>Calories: ${item.nutrition.Calories}</p>
+                        <p>Carbs: ${item.nutrition.Carbs}</p>
+                        <p>Protein: ${item.nutrition.Protein}</p>
+                        <p>Fat: ${item.nutrition.Fat}</p>
+                    `;
+                } else {
+                    document.getElementById('itemDetails').innerHTML = `<h2>Item Not Found</h2>`;
+                }
+            } catch (error) {
+                console.error("Error loading item:", error);
+                document.getElementById('itemDetails').innerHTML = `<h2>Error loading data</h2>`;
+            }
+        }
+
+        // Load the details when the page loads
+        loadItemDetails();
+    </script>
+</body>
+</html>

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Item Details</title>
+    <style>
+        .card {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            text-align: center;
+        }
+        .logo-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .logo {
+            width: 150px; 
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="logo-container">
+        <img src="Images/logo.jpg" alt="Restaurant Logo" class="logo">
+    </div>
+    <div class="card" id="itemDetails">Loading...</div>
+    <script>
+       const menuItems = {
+    "Paneer Bhurji-High-Protein Scrambled Paneer": {
+        "Price": "200",
+        "ingredients": [
+            "100g paneer (cottage cheese)",
+            "1 small onion (chopped)",
+            "1 tomato (chopped)",
+            "1 green chili (chopped)",
+            "½ tsp turmeric",
+            "½ tsp cumin",
+            "½ tsp garam masala",
+            "1 tsp olive oil",
+            "Salt & coriander leaves for garnish"
+        ],
+        "nutrition": {
+            "Calories": "360 kcal"
+        }
+    },
+    "Sprouted Moong Chaat": {
+        "Price": "150",
+        "ingredients": [
+            "1 cup sprouted moong (boiled)",
+            "1 small cucumber (chopped)",
+            "1 tomato (chopped)",
+            "1 green chili (chopped)",
+            "½ tsp chaat masala",
+            "½ tsp cumin powder",
+            "1 tsp lemon juice",
+            "Salt & coriander for garnish"
+        ],
+        "nutrition": {
+            "Calories": "170 kcal"
+        }
+    },
+    "Besan Chilla": {
+        "Price": "180",
+        "ingredients": [
+            "½ cup besan (chickpea flour)",
+            "¼ cup water",
+            "1 small onion (chopped)",
+            "1 small tomato (chopped)",
+            "½ tsp turmeric",
+            "½ tsp cumin",
+            "½ tsp red chili powder",
+            "1 tsp olive oil"
+        ],
+        "nutrition": {
+            "Calories": "270 kcal"
+        }
+    },
+    "High-Protein Oats Upma": {
+        "Price": "220",
+        "ingredients": [
+            "½ cup rolled oats",
+            "1 cup water",
+            "1 small onion (chopped)",
+            "½ cup mixed vegetables (carrots, peas, bell peppers)",
+            "1 tsp olive oil -- 40 kcal",
+            "½ tsp mustard seeds",
+            "½ tsp cumin",
+            "½ tsp turmeric"
+        ],
+        "nutrition": {
+            "Calories": "270 kcal"
+        }
+    },
+    "Soya Chunks Stir-Fry": {
+        "Price": "190",
+        "ingredients": [
+            "1 cup boiled soya chunks",
+            "½ cup bell peppers (chopped)",
+            "1 small onion (chopped)",
+            "½ tsp black pepper",
+            "½ tsp soy sauce",
+            "1 tsp olive oil"
+        ],
+        "nutrition": {
+            "Calories": "230 kcal"
+        }
+    },
+    "Chicken Breast Stir-Fry": {
+        "Price": "250",
+        "ingredients": [
+            "150g chicken breast (chopped)",
+            "½ cup bell peppers (chopped)",
+            "1 small onion (chopped)",
+            "½ tsp black pepper",
+            "½ tsp soy sauce",
+            "1 tsp olive oil"
+        ],
+        "nutrition": {
+            "Calories": "260 kcal"
+        }
+    },
+    "Egg Bhurji-Indian Scrambled Eggs": {
+        "Price": "180",
+        "ingredients": [
+            "2 eggs",
+            "1 small onion (chopped)",
+            "1 tomato (chopped)",
+            "½ tsp turmeric",
+            "½ tsp cumin",
+            "½ tsp garam masala",
+            "1 tsp olive oil"
+        ],
+        "nutrition": {
+            "Calories": "230 kcal"
+        }
+    },
+    "Tandoori Fish-Pan-Seared": {
+        "Price": "300",
+        "ingredients": [
+            "150g fish fillet (salmon/basa)",
+            "½ tsp turmeric",
+            "½ tsp red chili powder",
+            "½ tsp garam masala",
+            "1 tsp olive oil",
+            "1 tsp lemon juice"
+        ],
+        "nutrition": {
+            "Calories": "225 kcal"
+        }
+    },
+    "Chicken & Spinach Omelet": {
+        "Price": "200",
+        "ingredients": [
+            "2 eggs",
+            "50g shredded chicken breast",
+            "½ cup spinach",
+            "½ tsp black pepper",
+            "½ tsp salt",
+            "1 tsp olive oil"
+        ],
+        "nutrition": {
+            "Calories": "245 kcal"
+        }
+    },
+    "Prawn Masala Stir-Fry": {
+        "Price": "280",
+        "ingredients": [
+            "150g prawns",
+            "½ cup bell peppers (chopped)",
+            "1 small onion (chopped)",
+            "½ tsp turmeric",
+            "½ tsp black pepper",
+            "1 tsp olive oil"
+        ],
+        "nutrition": {
+            "Calories": "180 kcal"
+        }
+    }
+};
+
+async function loadItemDetails() {
+            try {
+                // Get item name from URL
+                const urlParams = new URLSearchParams(window.location.search);
+                const itemName = decodeURIComponent(urlParams.get('name') || "").trim();
+
+                console.log("Requested Item:", itemName); // Debugging
+
+                // Simulating API fetch (Replace with real API if needed)
+                await new Promise(resolve => setTimeout(resolve, 500)); // Simulating delay
+
+                // Check if item exists
+                const item = menuItems[itemName];
+
+                if (item) {
+                    document.getElementById('itemDetails').innerHTML = `
+                        <h2>${itemName}</h2>
+                        <h3>Ingredients:</h3>
+                        <ul>${item.ingredients.map(ing => `<li>${ing}</li>`).join('')}</ul>
+                        <h3>Nutrition:</h3>
+                        <p>Total Calories: ${item.nutrition.Calories}</p>
+                    `;
+                } else {
+                    document.getElementById('itemDetails').innerHTML = `<h2>Item Not Found</h2>`;
+                }
+            } catch (error) {
+                console.error("Error loading item:", error);
+                document.getElementById('itemDetails').innerHTML = `<h2>Error loading data</h2>`;
+            }
+        }
+
+        // Load the details when the page loads
+        loadItemDetails();
+    </script>
+</body>
+</html>

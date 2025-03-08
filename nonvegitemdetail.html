@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Item Details</title>
+    <style>
+        .card {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            text-align: center;
+        }
+        .logo-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .logo {
+            width: 150px; 
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+  <div class="logo-container">
+    <img src="Images/logo.jpg" alt="Restaurant Logo" class="logo">
+</div>
+    <div class="card" id="itemDetails">Loading...</div>
+    <script>
+    const menuItems =  {
+  "menuItems": {
+    "Garlic Butter Chicken Thighs": {
+      "price": "200",
+      "nutrition": {
+        "calories": 700,
+        "protein": 50,
+        "fat": 40,
+        "carbs": 5
+      },
+      "ingredients": [
+        "2 bone-in, skin-on chicken thighs",
+        "2 tbsp butter",
+        "3 garlic cloves (minced)",
+        "1 tsp black pepper",
+        "Salt to taste"
+      ]
+    },
+    "Spicy Chicken Drumsticks": {
+      "price": "250",
+      "nutrition": {
+        "calories": 750,
+        "protein": 55,
+        "fat": 35,
+        "carbs": 10
+      },
+      "ingredients": [
+        "3 chicken drumsticks",
+        "1 tbsp olive oil",
+        "1 tsp red chili powder",
+        "½ tsp black pepper",
+        "½ tsp paprika",
+        "Salt to taste"
+      ]
+    },
+    "Pan-Seared Chicken Breast with Veggies": {
+      "price": "300",
+      "nutrition": {
+        "calories": 600,
+        "protein": 55,
+        "fat": 20,
+        "carbs": 15
+      },
+      "ingredients": [
+        "1 large chicken breast",
+        "1 tbsp olive oil",
+        "1 tsp black pepper",
+        "1 cup mixed vegetables (carrots, bell peppers, beans)",
+        "Salt to taste"
+      ]
+    },
+    "Creamy Garlic Chicken with Rice": {
+      "price": "350",
+      "nutrition": {
+        "calories": 750,
+        "protein": 50,
+        "fat": 35,
+        "carbs": 80
+      },
+      "ingredients": [
+        "200g boneless chicken (sliced)",
+        "1 tbsp butter",
+        "4 garlic cloves (minced)",
+        "½ cup heavy cream",
+        "1 tsp black pepper",
+        "2 cups cooked rice",
+        "Salt to taste"
+      ]
+    },
+    "Creamy Coconut Chicken Curry with Rice": {
+      "price": "400",
+      "nutrition": {
+        "calories": 780,
+        "protein": 50,
+        "fat": 30,
+        "carbs": 85
+      },
+      "ingredients": [
+        "200g boneless chicken (cubed)",
+        "1 cup coconut milk",
+        "1 tbsp oil",
+        "1 onion (chopped)",
+        "1 tsp red chili powder",
+        "2 cups cooked rice",
+        "Salt to taste"
+      ]
+    },
+    "Chicken and Egg Fried Rice": {
+      "price": "350",
+      "nutrition": {
+        "calories": 800,
+        "protein": 50,
+        "fat": 25,
+        "carbs": 90
+      },
+      "ingredients": [
+        "2 cups cooked rice",
+        "200g boneless chicken (shredded)",
+        "2 eggs (scrambled)",
+        "1 onion (chopped)",
+        "1 tbsp soy sauce",
+        "1 tbsp oil",
+        "Salt to taste"
+      ]
+    },
+    "Spicy Garlic Chicken Wings": {
+      "price": "380",
+      "nutrition": {
+        "calories": 850,
+        "protein": 55,
+        "fat": 45,
+        "carbs": 60
+      },
+      "ingredients": [
+        "6 chicken wings",
+        "2 tbsp butter",
+        "1 tsp red chili powder",
+        "1 tbsp soy sauce",
+        "4 garlic cloves (minced)",
+        "Salt to taste"
+      ]
+    },
+    "Chicken and Mushroom Stir-Fry with Rice": {
+      "price": "360",
+      "nutrition": {
+        "calories": 750,
+        "protein": 48,
+        "fat": 25,
+        "carbs": 80
+      },
+      "ingredients": [
+        "200g boneless chicken (sliced)",
+        "½ cup mushrooms (sliced)",
+        "2 tbsp oil",
+        "1 tbsp soy sauce",
+        "1 tsp black pepper",
+        "2 cups cooked rice",
+        "Salt to taste"
+      ]
+    },
+    "Chicken and Egg Noodles Stir-Fry": {
+      "price": "370",
+      "nutrition": {
+        "calories": 750,
+        "protein": 45,
+        "fat": 22,
+        "carbs": 90
+      },
+      "ingredients": [
+        "200g boneless chicken (sliced)",
+        "1 packet noodles (boiled)",
+        "2 eggs (scrambled)",
+        "1 onion (sliced)",
+        "½ cup capsicum (sliced)",
+        "2 tbsp soy sauce",
+        "1 tbsp vinegar",
+        "1 tsp black pepper",
+        "1 tbsp oil",
+        "Salt to taste"
+      ]
+    },
+    "Chicken and Egg Paratha": {
+      "price": "400",
+      "nutrition": {
+        "calories": 850,
+        "protein": 50,
+        "fat": 35,
+        "carbs": 90
+      },
+      "ingredients": [
+        "2 cups wheat flour",
+        "200g boneless chicken (shredded)",
+        "2 eggs",
+        "1 tsp black pepper",
+        "2 tbsp butter",
+        "Salt to taste"
+      ]
+    }
+  }
+}
+  
+
+async function loadItemDetails() {
+            try {
+                // Get item name from URL
+                const urlParams = new URLSearchParams(window.location.search);
+                const itemName = decodeURIComponent(urlParams.get('name') || "").trim();
+
+                console.log("Requested Item:", itemName); // Debugging
+
+                // Simulating API fetch (Replace with real API if needed)
+                await new Promise(resolve => setTimeout(resolve, 500)); // Simulating delay
+
+                // Check if item exists
+                const item = menuItems[itemName];
+
+                if (item) {
+                    document.getElementById('itemDetails').innerHTML = `
+                        <h2>${itemName}</h2>
+                        <h3>Ingredients:</h3>
+                        <ul>${item.ingredients.map(ing => `<li>${ing}</li>`).join('')}</ul>
+                        <h3>Nutrition:</h3>
+                        <p>Calories: ${item.nutrition.Calories}</p>
+                        <p>Carbs: ${item.nutrition.Carbs}</p>
+                        <p>Protein: ${item.nutrition.Protein}</p>
+                        <p>Fat: ${item.nutrition.Fat}</p>
+                    `;
+                } else {
+                    document.getElementById('itemDetails').innerHTML = `<h2>Item Not Found</h2>`;
+                }
+            } catch (error) {
+                console.error("Error loading item:", error);
+                document.getElementById('itemDetails').innerHTML = `<h2>Error loading data</h2>`;
+            }
+        }
+
+        // Load the details when the page loads
+        loadItemDetails();
+    </script>
+</body>
+</html>

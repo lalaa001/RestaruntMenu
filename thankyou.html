@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 320px;
+        }
+
+        h2 {
+            color: #28a745;
+            font-size: 22px;
+        }
+
+        p {
+            font-size: 18px;
+            color: #333;
+            margin: 15px 0;
+        }
+
+        #orderNumber {
+            font-weight: bold;
+            color: #007bff;
+            font-size: 20px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 15px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .logo {
+            width: 100px; 
+            height: auto;
+            display: block;
+            margin: 0 auto 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="Images/logo.jpg" alt="Restaurant Logo" class="logo">
+        <h2>Thank You for Your Order!</h2>
+        <p>Your Order Number: <span id="orderNumber"></span></p>
+        <button id="homeBtn">Back to Main Page</button>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const orderNumber = localStorage.getItem("orderNumber") || "N/A";
+            document.getElementById("orderNumber").textContent = orderNumber;
+
+            document.getElementById("homeBtn").addEventListener("click", function () {
+                window.location.href = "index.html"; // Change to your main page
+            });
+        });
+    </script>
+</body>
+</html>

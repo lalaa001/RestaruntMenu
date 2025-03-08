@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customize Your Dish</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            width: 350px;
+            text-align: center;
+        }
+        h2 {
+            color: #333;
+        }
+        select, input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .add-btn { background-color: green; color: white; }
+        .remove-btn { background-color: red; color: white; }
+        .custom-btn { background-color: orange; color: white; }
+        .proceed-btn { background-color: blue; color: white; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Customize Your Dish</h2>
+        <p>Base Price: ₹<span id="basePrice">0</span></p>
+
+        <h3>Choose an Ingredient to Add:</h3>
+        <select id="addIngredient"></select>
+        <button class="add-btn" onclick="addIngredient()">Add Item (+₹10)</button>
+
+        <h3>Add Another Ingredient:</h3>
+        <input type="text" id="customIngredient" placeholder="Enter ingredient name">
+        <button class="custom-btn" onclick="addCustomIngredient()">Add Custom (+₹10)</button>
+
+        <h3>Remove an Ingredient:</h3>
+        <select id="removeIngredient"></select>
+        <button class="remove-btn" onclick="removeIngredient()">Remove Item (-₹5)</button>
+
+        <h3>Total Price: ₹<span id="totalPrice">0</span></h3>
+        <button class="proceed-btn" onclick="proceedToPayment()">Proceed to Payment</button>
+    </div>
+
+    <script>
+    const dishIngredients = {
+    "Garlic Butter Chicken Thighs": [
+        "2 bone-in, skin-on chicken thighs",
+        "2 tbsp butter",
+        "3 garlic cloves (minced)",
+        "1 tsp black pepper",
+        "Salt to taste"
+      ],
+    "Spicy Chicken Drumsticks": [
+        "3 chicken drumsticks",
+        "1 tbsp olive oil",
+        "1 tsp red chili powder",
+        "½ tsp black pepper",
+        "½ tsp paprika",
+        "Salt to taste"
+      ],
+    "Pan-Seared Chicken Breast with Veggies": [
+        "1 large chicken breast",
+        "1 tbsp olive oil",
+        "1 tsp black pepper",
+        "1 cup mixed vegetables (carrots, bell peppers, beans)",
+        "Salt to taste"
+      ],
+    "Creamy Garlic Chicken with Rice": [
+        "200g boneless chicken (sliced)",
+        "1 tbsp butter",
+        "4 garlic cloves (minced)",
+        "½ cup heavy cream",
+        "1 tsp black pepper",
+        "2 cups cooked rice",
+        "Salt to taste"
+      ],
+    "Creamy Coconut Chicken Curry with Rice": [
+        "200g boneless chicken (cubed)",
+        "1 cup coconut milk",
+        "1 tbsp oil",
+        "1 onion (chopped)",
+        "1 tsp red chili powder",
+        "2 cups cooked rice",
+        "Salt to taste"
+      ],
+    "Chicken and Egg Fried Rice": [
+        "2 cups cooked rice",
+        "200g boneless chicken (shredded)",
+        "2 eggs (scrambled)",
+        "1 onion (chopped)",
+        "1 tbsp soy sauce",
+        "1 tbsp oil",
+        "Salt to taste"
+      ],
+    "Spicy Garlic Chicken Wings": [
+        "6 chicken wings",
+        "2 tbsp butter",
+        "1 tsp red chili powder",
+        "1 tbsp soy sauce",
+        "4 garlic cloves (minced)",
+        "Salt to taste"
+      ],
+    "Chicken and Mushroom Stir-Fry with Rice": [
+        "200g boneless chicken (sliced)",
+        "½ cup mushrooms (sliced)",
+        "2 tbsp oil",
+        "1 tbsp soy sauce",
+        "1 tsp black pepper",
+        "2 cups cooked rice",
+        "Salt to taste"
+      ],
+    "Chicken and Egg Noodles Stir-Fry": [
+        "200g boneless chicken (sliced)",
+        "1 packet noodles (boiled)",
+        "2 eggs (scrambled)",
+        "1 onion (sliced)",
+        "½ cup capsicum (sliced)",
+        "2 tbsp soy sauce",
+        "1 tbsp vinegar",
+        "1 tsp black pepper",
+        "1 tbsp oil",
+        "Salt to taste"
+      ],
+    "Chicken and Egg Paratha": [
+        "2 cups wheat flour",
+        "200g boneless chicken (shredded)",
+        "2 eggs",
+        "1 tsp black pepper",
+        "2 tbsp butter",
+        "Salt to taste"
+      ],
+    }
+        // Ingredient Data for Each Dish
+ 
+        let selectedDish = "";
+        let totalPrice = 0;
+
+        // Load Data on Page Load
+        window.onload = function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            selectedDish = urlParams.get("name");
+            totalPrice = parseInt(urlParams.get("price"), 10);
+
+            document.getElementById("basePrice").innerText = totalPrice;
+            document.getElementById("totalPrice").innerText = totalPrice;
+
+            updateIngredientLists();
+        };
+
+        // Update Ingredient Dropdowns Based on Selected Dish
+        function updateIngredientLists() {
+            const addIngredientSelect = document.getElementById("addIngredient");
+            const removeIngredientSelect = document.getElementById("removeIngredient");
+
+            addIngredientSelect.innerHTML = "";
+            removeIngredientSelect.innerHTML = "";
+
+            if (selectedDish && dishIngredients[selectedDish]) {
+                dishIngredients[selectedDish].forEach(ingredient => {
+                    let option = new Option(ingredient, ingredient);
+                    addIngredientSelect.add(option);
+                    removeIngredientSelect.add(new Option(ingredient, ingredient));
+                });
+            }
+        }
+
+        // Add Ingredient (+₹10)
+        function addIngredient() {
+            totalPrice += 10;
+            document.getElementById("totalPrice").innerText = totalPrice;
+        }
+
+        // Add Custom Ingredient (+₹10)
+        function addCustomIngredient() {
+            const customIngredient = document.getElementById("customIngredient").value.trim();
+            if (customIngredient) {
+                totalPrice += 10;
+                document.getElementById("totalPrice").innerText = totalPrice;
+                document.getElementById("customIngredient").value = ""; // Clear input
+            }
+        }
+
+        // Remove Ingredient (-₹5)
+        function removeIngredient() {
+            totalPrice -= 5;
+            document.getElementById("totalPrice").innerText = totalPrice;
+        }
+
+        // Proceed to Payment
+        function proceedToPayment() {
+            window.location.href = "payment.html"; 
+        }
+    </script>
+</body>
+</html>
